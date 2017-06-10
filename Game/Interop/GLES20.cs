@@ -763,23 +763,23 @@ namespace Bare.Interop
         {
             var n = buffers.Length;
             fixed (int* b = buffers)
-				_glDeleteBuffers(n, b);
-		}
-		public static unsafe int[] glGenBuffers(int n)
+                _glDeleteBuffers(n, b);
+        }
+        public static unsafe int[] glGenBuffers(int n)
         {
             var buffers = new int[n];
-			fixed (int* b = buffers)
+            fixed (int* b = buffers)
                 _glGenBuffers(n, b);
             return buffers;
-		}
+        }
 
-		public static string glGetString(int name)
+        public static string glGetString(int name)
         {
             var s = _glGetString(name);
             return Marshal.PtrToStringAuto(s);
         }
 
-		public static unsafe void glShaderSource(int shader, string source)
+        public static unsafe void glShaderSource(int shader, string source)
         {
             if (String.IsNullOrWhiteSpace(source))
                 source = " ";
@@ -788,16 +788,16 @@ namespace Bare.Interop
             {
                 void* p = b;
                 void* pp = &p;
-				_glShaderSource(shader, 1, (IntPtr)pp, null);
-			}
-	    }
-		#endregion
+                _glShaderSource(shader, 1, (IntPtr)pp, null);
+            }
+        }
+        #endregion
 
-		private static bool GetProcAddress<T>(out T t)
+        private static bool GetProcAddress<T>(out T t)
         {
             Object proc = null;
-			var name = typeof(T).Name;
-			IntPtr pointer = SDL_GL_GetProcAddress(name);
+            var name = typeof(T).Name;
+            IntPtr pointer = SDL_GL_GetProcAddress(name);
             if (pointer != IntPtr.Zero)
                 proc = Marshal.GetDelegateForFunctionPointer(pointer, typeof(T)) as Object;
             t = (T)proc;
@@ -811,149 +811,149 @@ namespace Bare.Interop
             if (loaded)
                 return loaded;
             loaded =
-				GetProcAddress(out glActiveTexture) &&
-				GetProcAddress(out glAttachShader) &&
-				GetProcAddress(out glBindAttribLocation) &&
-				GetProcAddress(out glBindBuffer) &&
-				GetProcAddress(out glBindFramebuffer) &&
-				GetProcAddress(out glBindRenderbuffer) &&
-				GetProcAddress(out glBindTexture) &&
-				GetProcAddress(out glBlendColor) &&
-				GetProcAddress(out glBlendEquation) &&
-				GetProcAddress(out glBlendEquationSeparate) &&
-				GetProcAddress(out glBlendFunc) &&
-				GetProcAddress(out glBlendFuncSeparate) &&
-				GetProcAddress(out glBufferData) &&
-				GetProcAddress(out glBufferSubData) &&
-				GetProcAddress(out glCheckFramebufferStatus) &&
-				GetProcAddress(out glClear) &&
-				GetProcAddress(out glClearColor) &&
-				GetProcAddress(out glClearDepthf) &&
-				GetProcAddress(out glClearStencil) &&
-				GetProcAddress(out glColorMask) &&
-				GetProcAddress(out glCompileShader) &&
-				GetProcAddress(out glCompressedTexImage2D) &&
-				GetProcAddress(out glCompressedTexSubImage2D) &&
-				GetProcAddress(out glCopyTexImage2D) &&
-				GetProcAddress(out glCopyTexSubImage2D) &&
-				GetProcAddress(out glCreateProgram) &&
-				GetProcAddress(out glCreateShader) &&
-				GetProcAddress(out glCullFace) &&
-				GetProcAddress(out _glDeleteBuffers) &&
-				GetProcAddress(out glDeleteFramebuffers) &&
-				GetProcAddress(out glDeleteProgram) &&
-				GetProcAddress(out glDeleteRenderbuffers) &&
-				GetProcAddress(out glDeleteShader) &&
-				GetProcAddress(out glDeleteTextures) &&
-				GetProcAddress(out glDepthFunc) &&
-				GetProcAddress(out glDepthMask) &&
-				GetProcAddress(out glDepthRangef) &&
-				GetProcAddress(out glDetachShader) &&
-				GetProcAddress(out glDisable) &&
-				GetProcAddress(out glDisableVertexAttribArray) &&
-				GetProcAddress(out glDrawArrays) &&
-				GetProcAddress(out glDrawElements) &&
-				GetProcAddress(out glEnable) &&
-				GetProcAddress(out glEnableVertexAttribArray) &&
-				GetProcAddress(out glFinish) &&
-				GetProcAddress(out glFlush) &&
-				GetProcAddress(out glFramebufferRenderbuffer) &&
-				GetProcAddress(out glFramebufferTexture2D) &&
-				GetProcAddress(out glFrontFace) &&
-				GetProcAddress(out _glGenBuffers) &&
-				GetProcAddress(out glGenerateMipmap) &&
-				GetProcAddress(out glGenFramebuffers) &&
-				GetProcAddress(out glGenRenderbuffers) &&
-				GetProcAddress(out glGenTextures) &&
-				GetProcAddress(out glGetActiveAttrib) &&
-				GetProcAddress(out glGetActiveUniform) &&
-				GetProcAddress(out glGetAttachedShaders) &&
-				GetProcAddress(out glGetAttribLocation) &&
-				GetProcAddress(out glGetBooleanv) &&
-				GetProcAddress(out glGetBufferParameteriv) &&
-				GetProcAddress(out glGetError) &&
-				GetProcAddress(out glGetFloatv) &&
-				GetProcAddress(out glGetFramebufferAttachmentParameteriv) &&
-				GetProcAddress(out glGetIntegerv) &&
-				GetProcAddress(out glGetPointerv) &&
-				GetProcAddress(out glGetProgramInfoLog) &&
-				GetProcAddress(out glGetProgramiv) &&
-				GetProcAddress(out glGetRenderbufferParameteriv) &&
-				GetProcAddress(out glGetShaderInfoLog) &&
-				GetProcAddress(out glGetShaderiv) &&
-				GetProcAddress(out glGetShaderPrecisionFormat) &&
-				GetProcAddress(out glGetShaderSource) &&
-				GetProcAddress(out _glGetString) &&
-				GetProcAddress(out glGetTexParameterfv) &&
-				GetProcAddress(out glGetTexParameteriv) &&
-				GetProcAddress(out glGetUniformfv) &&
-				GetProcAddress(out glGetUniformiv) &&
-				GetProcAddress(out glGetUniformLocation) &&
-				GetProcAddress(out glGetVertexAttribfv) &&
-				GetProcAddress(out glGetVertexAttribiv) &&
-				GetProcAddress(out glGetVertexAttribPointerv) &&
-				GetProcAddress(out glHint) &&
-				GetProcAddress(out glIsBuffer) &&
-				GetProcAddress(out glIsEnabled) &&
-				GetProcAddress(out glIsFramebuffer) &&
-				GetProcAddress(out glIsProgram) &&
-				GetProcAddress(out glIsRenderbuffer) &&
-				GetProcAddress(out glIsShader) &&
-				GetProcAddress(out glIsTexture) &&
-				GetProcAddress(out glLineWidth) &&
-				GetProcAddress(out glLinkProgram) &&
-				GetProcAddress(out glPixelStorei) &&
-				GetProcAddress(out glPolygonOffset) &&
-				GetProcAddress(out glReadPixels) &&
-				GetProcAddress(out glReleaseShaderCompiler) &&
-				GetProcAddress(out glRenderbufferStorage) &&
-				GetProcAddress(out glSampleCoverage) &&
-				GetProcAddress(out glScissor) &&
-				GetProcAddress(out glShaderBinary) &&
-				GetProcAddress(out _glShaderSource) &&
-				GetProcAddress(out glStencilFunc) &&
-				GetProcAddress(out glStencilFuncSeparate) &&
-				GetProcAddress(out glStencilMask) &&
-				GetProcAddress(out glStencilMaskSeparate) &&
-				GetProcAddress(out glStencilOp) &&
-				GetProcAddress(out glStencilOpSeparate) &&
-				GetProcAddress(out glTexImage2D) &&
-				GetProcAddress(out glTexParameterf) &&
-				GetProcAddress(out glTexParameterfv) &&
-				GetProcAddress(out glTexParameteri) &&
-				GetProcAddress(out glTexParameteriv) &&
-				GetProcAddress(out glTexSubImage2D) &&
-				GetProcAddress(out glUniform1f) &&
-				GetProcAddress(out glUniform1fv) &&
-				GetProcAddress(out glUniform1i) &&
-				GetProcAddress(out glUniform1iv) &&
-				GetProcAddress(out glUniform2f) &&
-				GetProcAddress(out glUniform2fv) &&
-				GetProcAddress(out glUniform2i) &&
-				GetProcAddress(out glUniform2iv) &&
-				GetProcAddress(out glUniform3f) &&
-				GetProcAddress(out glUniform3fv) &&
-				GetProcAddress(out glUniform3i) &&
-				GetProcAddress(out glUniform3iv) &&
-				GetProcAddress(out glUniform4f) &&
-				GetProcAddress(out glUniform4fv) &&
-				GetProcAddress(out glUniform4i) &&
-				GetProcAddress(out glUniform4iv) &&
-				GetProcAddress(out glUniformMatrix2fv) &&
-				GetProcAddress(out glUniformMatrix3fv) &&
-				GetProcAddress(out glUniformMatrix4fv) &&
-				GetProcAddress(out glUseProgram) &&
-				GetProcAddress(out glValidateProgram) &&
-				GetProcAddress(out glVertexAttrib1f) &&
-				GetProcAddress(out glVertexAttrib1fv) &&
-				GetProcAddress(out glVertexAttrib2f) &&
-				GetProcAddress(out glVertexAttrib2fv) &&
-				GetProcAddress(out glVertexAttrib3f) &&
-				GetProcAddress(out glVertexAttrib3fv) &&
-				GetProcAddress(out glVertexAttrib4f) &&
-				GetProcAddress(out glVertexAttrib4fv) &&
-				GetProcAddress(out glVertexAttribPointer) &&
-				GetProcAddress(out glViewport);
+                GetProcAddress(out glActiveTexture) &&
+                GetProcAddress(out glAttachShader) &&
+                GetProcAddress(out glBindAttribLocation) &&
+                GetProcAddress(out glBindBuffer) &&
+                GetProcAddress(out glBindFramebuffer) &&
+                GetProcAddress(out glBindRenderbuffer) &&
+                GetProcAddress(out glBindTexture) &&
+                GetProcAddress(out glBlendColor) &&
+                GetProcAddress(out glBlendEquation) &&
+                GetProcAddress(out glBlendEquationSeparate) &&
+                GetProcAddress(out glBlendFunc) &&
+                GetProcAddress(out glBlendFuncSeparate) &&
+                GetProcAddress(out glBufferData) &&
+                GetProcAddress(out glBufferSubData) &&
+                GetProcAddress(out glCheckFramebufferStatus) &&
+                GetProcAddress(out glClear) &&
+                GetProcAddress(out glClearColor) &&
+                GetProcAddress(out glClearDepthf) &&
+                GetProcAddress(out glClearStencil) &&
+                GetProcAddress(out glColorMask) &&
+                GetProcAddress(out glCompileShader) &&
+                GetProcAddress(out glCompressedTexImage2D) &&
+                GetProcAddress(out glCompressedTexSubImage2D) &&
+                GetProcAddress(out glCopyTexImage2D) &&
+                GetProcAddress(out glCopyTexSubImage2D) &&
+                GetProcAddress(out glCreateProgram) &&
+                GetProcAddress(out glCreateShader) &&
+                GetProcAddress(out glCullFace) &&
+                GetProcAddress(out _glDeleteBuffers) &&
+                GetProcAddress(out glDeleteFramebuffers) &&
+                GetProcAddress(out glDeleteProgram) &&
+                GetProcAddress(out glDeleteRenderbuffers) &&
+                GetProcAddress(out glDeleteShader) &&
+                GetProcAddress(out glDeleteTextures) &&
+                GetProcAddress(out glDepthFunc) &&
+                GetProcAddress(out glDepthMask) &&
+                GetProcAddress(out glDepthRangef) &&
+                GetProcAddress(out glDetachShader) &&
+                GetProcAddress(out glDisable) &&
+                GetProcAddress(out glDisableVertexAttribArray) &&
+                GetProcAddress(out glDrawArrays) &&
+                GetProcAddress(out glDrawElements) &&
+                GetProcAddress(out glEnable) &&
+                GetProcAddress(out glEnableVertexAttribArray) &&
+                GetProcAddress(out glFinish) &&
+                GetProcAddress(out glFlush) &&
+                GetProcAddress(out glFramebufferRenderbuffer) &&
+                GetProcAddress(out glFramebufferTexture2D) &&
+                GetProcAddress(out glFrontFace) &&
+                GetProcAddress(out _glGenBuffers) &&
+                GetProcAddress(out glGenerateMipmap) &&
+                GetProcAddress(out glGenFramebuffers) &&
+                GetProcAddress(out glGenRenderbuffers) &&
+                GetProcAddress(out glGenTextures) &&
+                GetProcAddress(out glGetActiveAttrib) &&
+                GetProcAddress(out glGetActiveUniform) &&
+                GetProcAddress(out glGetAttachedShaders) &&
+                GetProcAddress(out glGetAttribLocation) &&
+                GetProcAddress(out glGetBooleanv) &&
+                GetProcAddress(out glGetBufferParameteriv) &&
+                GetProcAddress(out glGetError) &&
+                GetProcAddress(out glGetFloatv) &&
+                GetProcAddress(out glGetFramebufferAttachmentParameteriv) &&
+                GetProcAddress(out glGetIntegerv) &&
+                GetProcAddress(out glGetPointerv) &&
+                GetProcAddress(out glGetProgramInfoLog) &&
+                GetProcAddress(out glGetProgramiv) &&
+                GetProcAddress(out glGetRenderbufferParameteriv) &&
+                GetProcAddress(out glGetShaderInfoLog) &&
+                GetProcAddress(out glGetShaderiv) &&
+                GetProcAddress(out glGetShaderPrecisionFormat) &&
+                GetProcAddress(out glGetShaderSource) &&
+                GetProcAddress(out _glGetString) &&
+                GetProcAddress(out glGetTexParameterfv) &&
+                GetProcAddress(out glGetTexParameteriv) &&
+                GetProcAddress(out glGetUniformfv) &&
+                GetProcAddress(out glGetUniformiv) &&
+                GetProcAddress(out glGetUniformLocation) &&
+                GetProcAddress(out glGetVertexAttribfv) &&
+                GetProcAddress(out glGetVertexAttribiv) &&
+                GetProcAddress(out glGetVertexAttribPointerv) &&
+                GetProcAddress(out glHint) &&
+                GetProcAddress(out glIsBuffer) &&
+                GetProcAddress(out glIsEnabled) &&
+                GetProcAddress(out glIsFramebuffer) &&
+                GetProcAddress(out glIsProgram) &&
+                GetProcAddress(out glIsRenderbuffer) &&
+                GetProcAddress(out glIsShader) &&
+                GetProcAddress(out glIsTexture) &&
+                GetProcAddress(out glLineWidth) &&
+                GetProcAddress(out glLinkProgram) &&
+                GetProcAddress(out glPixelStorei) &&
+                GetProcAddress(out glPolygonOffset) &&
+                GetProcAddress(out glReadPixels) &&
+                GetProcAddress(out glReleaseShaderCompiler) &&
+                GetProcAddress(out glRenderbufferStorage) &&
+                GetProcAddress(out glSampleCoverage) &&
+                GetProcAddress(out glScissor) &&
+                GetProcAddress(out glShaderBinary) &&
+                GetProcAddress(out _glShaderSource) &&
+                GetProcAddress(out glStencilFunc) &&
+                GetProcAddress(out glStencilFuncSeparate) &&
+                GetProcAddress(out glStencilMask) &&
+                GetProcAddress(out glStencilMaskSeparate) &&
+                GetProcAddress(out glStencilOp) &&
+                GetProcAddress(out glStencilOpSeparate) &&
+                GetProcAddress(out glTexImage2D) &&
+                GetProcAddress(out glTexParameterf) &&
+                GetProcAddress(out glTexParameterfv) &&
+                GetProcAddress(out glTexParameteri) &&
+                GetProcAddress(out glTexParameteriv) &&
+                GetProcAddress(out glTexSubImage2D) &&
+                GetProcAddress(out glUniform1f) &&
+                GetProcAddress(out glUniform1fv) &&
+                GetProcAddress(out glUniform1i) &&
+                GetProcAddress(out glUniform1iv) &&
+                GetProcAddress(out glUniform2f) &&
+                GetProcAddress(out glUniform2fv) &&
+                GetProcAddress(out glUniform2i) &&
+                GetProcAddress(out glUniform2iv) &&
+                GetProcAddress(out glUniform3f) &&
+                GetProcAddress(out glUniform3fv) &&
+                GetProcAddress(out glUniform3i) &&
+                GetProcAddress(out glUniform3iv) &&
+                GetProcAddress(out glUniform4f) &&
+                GetProcAddress(out glUniform4fv) &&
+                GetProcAddress(out glUniform4i) &&
+                GetProcAddress(out glUniform4iv) &&
+                GetProcAddress(out glUniformMatrix2fv) &&
+                GetProcAddress(out glUniformMatrix3fv) &&
+                GetProcAddress(out glUniformMatrix4fv) &&
+                GetProcAddress(out glUseProgram) &&
+                GetProcAddress(out glValidateProgram) &&
+                GetProcAddress(out glVertexAttrib1f) &&
+                GetProcAddress(out glVertexAttrib1fv) &&
+                GetProcAddress(out glVertexAttrib2f) &&
+                GetProcAddress(out glVertexAttrib2fv) &&
+                GetProcAddress(out glVertexAttrib3f) &&
+                GetProcAddress(out glVertexAttrib3fv) &&
+                GetProcAddress(out glVertexAttrib4f) &&
+                GetProcAddress(out glVertexAttrib4fv) &&
+                GetProcAddress(out glVertexAttribPointer) &&
+                GetProcAddress(out glViewport);
             return loaded;
         }
     }

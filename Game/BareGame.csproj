@@ -60,6 +60,10 @@
     <Compile Include="Devices\Windows\WindowStyle.cs" />
     <Compile Include="Devices\Windows\TestWindow.cs" />
     <Compile Include="Devices\Events\EmptyClass.cs" />
+    <Compile Include="Geometry\Mat4.cs" />
+    <Compile Include="Geometry\Vec2.cs" />
+    <Compile Include="Geometry\Vec3.cs" />
+    <Compile Include="Geometry\Vec4.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interop\" />
