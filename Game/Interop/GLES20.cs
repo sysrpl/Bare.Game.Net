@@ -787,8 +787,8 @@ namespace Bare.Interop
             fixed (byte* b = buffer)
             {
                 void* p = b;
-                void* pp = &p;
-                _glShaderSource(shader, 1, (IntPtr)pp, null);
+                void* sources = &p;
+                _glShaderSource(shader, 1, (IntPtr)sources, null);
             }
         }
         #endregion
