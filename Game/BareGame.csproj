@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9698B114-4286-49A8-A29D-C69C3753AE59}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Bare</RootNamespace>
+    <AssemblyName>baregame</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Description>	</Description>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Interop\SDL2.cs" />
+    <Compile Include="Devices\Joystick.cs" />
+    <Compile Include="Devices\Mouse.cs" />
+    <Compile Include="Devices\DeviceList.cs" />
+    <Compile Include="Geometry\RectF.cs" />
+    <Compile Include="Geometry\RectI.cs" />
+    <Compile Include="Devices\Windows\MessageBox.cs" />
+    <Compile Include="Devices\Windows\MessageKind.cs" />
+    <Compile Include="Devices\Windows\Window.cs" />
+    <Compile Include="Devices\Windows\WindowMode.cs" />
+    <Compile Include="Devices\Displays\Display.cs" />
+    <Compile Include="Devices\Displays\DisplayMode.cs" />
+    <Compile Include="Devices\Displays\VideoDriver.cs" />
+    <Compile Include="Interop\GLES20.cs" />
+    <Compile Include="Devices\Events\DeviceEvent.cs" />
+    <Compile Include="Devices\Events\KeyboardEvent.cs" />
+    <Compile Include="Devices\Keyboard\KeyMods.cs" />
+    <Compile Include="Devices\Keyboard\Keyboard.cs" />
+    <Compile Include="Devices\Keyboard\KeyCode.cs" />
+    <Compile Include="Devices\Keyboard\KeyState.cs" />
+    <Compile Include="Devices\Windows\WindowOptions.cs" />
+    <Compile Include="Devices\Windows\WindowStyle.cs" />
+    <Compile Include="Devices\Windows\TestWindow.cs" />
+    <Compile Include="Devices\Events\EmptyClass.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interop\" />
+    <Folder Include="Devices\" />
+    <Folder Include="Geometry\" />
+    <Folder Include="Devices\Windows\" />
+    <Folder Include="Devices\Displays\" />
+    <Folder Include="Devices\Events\" />
+    <Folder Include="Devices\Keyboard\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="baregame.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
