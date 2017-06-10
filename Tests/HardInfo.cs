@@ -29,8 +29,8 @@ namespace Tests
 				WriteLine($"\t{d}");
 			WriteLine("Current video driver:");
             WriteLine($"\t{VideoDrivers.Current}");
-            var window = new TestWindow();
-            Run(window);
+            //var window = new TestWindow();
+            //Run(window);
             WriteLine("done.");
 		}
 

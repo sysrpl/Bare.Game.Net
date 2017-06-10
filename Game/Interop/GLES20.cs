@@ -7,7 +7,7 @@ using static Bare.Interop.SDL2;
 namespace Bare.Interop
 {
     /// <summary>
-    /// Entry point for all OpenGL ES 2.0-related types and methods.
+    /// Entry point for all OpenGL ES 2.0 related types and methods.
     /// </summary>
     public static class GLES20
     {
@@ -527,9 +527,9 @@ namespace Bare.Interop
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public unsafe delegate void glShaderSource(int shader, int count, IntPtr strings, int* length);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            public delegate void glStencilFunc(int func, int @ref, int mask);
+            public delegate void glStencilFunc(int func, int addr, int mask);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            public delegate void glStencilFuncSeparate(int face, int func, int @ref, int mask);
+            public delegate void glStencilFuncSeparate(int face, int func, int addr, int mask);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void glStencilMask(int mask);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

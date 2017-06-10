@@ -1,20 +1,8 @@
 ﻿<Properties StartupConfiguration="{59ABF06B-0BF8-4911-9FCC-89DFA4D00063}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Game/Geometry/Vec4.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tests/HardInfo.cs">
     <Files>
-      <File FileName="Game/Game.cs" Line="17" Column="1" />
-      <File FileName="Game/Devices/Events/KeyboardEvent.cs" Line="8" Column="39" />
-      <File FileName="Game/Devices/Events/DeviceEvent.cs" Line="10" Column="1" />
-      <File FileName="Game/Devices/Windows/Window.cs" Line="50" Column="75" />
-      <File FileName="Tests/HardInfo.cs" Line="32" Column="23" />
-      <File FileName="Game/Devices/DeviceList.cs" Line="34" Column="1" />
-      <File FileName="Game/Devices/Windows/WindowStyle.cs" Line="74" Column="33" />
-      <File FileName="Game/Interop/GLES20.cs" Line="778" Column="11" />
-      <File FileName="Game/Geometry/Mat4.cs" Line="35" Column="1" />
-      <File FileName="Game/Geometry/RectF.cs" Line="41" Column="1" />
-      <File FileName="Game/Interop/SDL2.cs" Line="1" Column="1" />
-      <File FileName="Game/Geometry/Vec2.cs" Line="12" Column="1" />
-      <File FileName="Game/Geometry/Vec3.cs" Line="12" Column="1" />
-      <File FileName="Game/Geometry/Vec4.cs" Line="11" Column="1" />
+      <File FileName="Game/Interop/GLES20.cs" Line="941" Column="4" />
+      <File FileName="Tests/HardInfo.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.Tests PreferredExecutionTarget="MonoDevelop.Default" />
