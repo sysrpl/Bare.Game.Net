@@ -15,7 +15,7 @@ namespace Bare.Devices
         /// </summary>
         public WindowStyle()
         {
-            DisplayMode = Game.Displays[0].Modes.Desktop;
+            DisplayMode = Game.Displays.Count > 0 ? Game.Displays[0].Modes.Current : new DisplayMode();
         }
 
         /// <summary>
@@ -82,20 +82,5 @@ namespace Bare.Devices
         /// Gets or sets the the the visibility of a window.
         /// </summary>
         public bool Visible { get; set; } = true;
-
-        /// <summary>
-        /// Gets or sets the multisampling level for the graphics context.
-        /// </summary>
-        public int Multisamples { get; set; } = 0;
-
-        /// <summary>
-        /// Gets or sets the number of depth buffer bits for the graphics context.
-        /// </summary>
-        public int DepthBits { get; set; } = 16;
-
-        /// <summary>
-        /// Gets or sets the number of stencil buffer bits for the graphics context.
-        /// </summary>
-        public int StencilBits { get; set; } = 0;
     }
 }

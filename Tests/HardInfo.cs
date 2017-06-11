@@ -10,6 +10,12 @@ namespace Tests
 		[STAThread]
 		public static void Main(string[] args)
 		{
+            if (!Init())
+            {
+                WriteLine("Unable to find a display");
+                WriteLine("done.");
+                return;
+            }
             WriteLine("Bare Game Hardware Information");
 			WriteLine("------------------------------");
             WriteLine($"Number of displays: {Displays.Count}");
@@ -29,8 +35,8 @@ namespace Tests
 				WriteLine($"\t{d}");
 			WriteLine("Current video driver:");
             WriteLine($"\t{VideoDrivers.Current}");
-            //var window = new TestWindow();
-            //Run(window);
+            var window = new TestWindow();
+            Run(window);
             WriteLine("done.");
 		}
 

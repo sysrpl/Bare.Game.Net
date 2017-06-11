@@ -23,24 +23,6 @@ namespace Bare.Devices
         internal bool CreateWindow()
         {
             CreateStyle(style);
-			SDL_Quit();
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
-			SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
-			SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
-			SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
-			SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
-			SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
-			SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-            SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, style.DepthBits);
-            SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, style.StencilBits);
-			if (style.Multisamples > 0)
-            {
-                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
-                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, style.Multisamples);
-            }
-			SDL_Init(SDL_INIT_TIMER | SDL_INIT_VIDEO);
 			var x = style.Centered ? SDL_WINDOWPOS_CENTERED : style.X;
             var y = style.Centered ? SDL_WINDOWPOS_CENTERED : style.Y;
             uint flags = SDL_WINDOW_OPENGL |
@@ -102,6 +84,7 @@ namespace Bare.Devices
                 var c = context;
                 window = IntPtr.Zero;
                 context = IntPtr.Zero;
+                SDL_GL_MakeCurrent(IntPtr.Zero, IntPtr.Zero);
                 SDL_GL_DeleteContext(c);
                 SDL_DestroyWindow(w);
             }

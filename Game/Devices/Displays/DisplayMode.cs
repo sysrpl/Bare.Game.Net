@@ -81,11 +81,12 @@ namespace Bare.Devices
             mode.driverdata = IntPtr.Zero;
             SDL_DisplayMode match;
             SDL_GetClosestDisplayMode(display, ref mode, out match);
-            return this.Where(m =>
+            var closest = this.Where(m =>
                               m.Width == match.w &&
                               m.Height == match.h &&
                               m.RefreshRate == match.refresh_rate)
                        .FirstOrDefault();
+            return closest ?? Current;
         }
 
         /// <summary>

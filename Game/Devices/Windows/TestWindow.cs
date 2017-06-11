@@ -20,9 +20,23 @@ namespace Bare.Devices
             }
         }
 
+        private int i = 0;
+
+        private static float Flip(float f)
+        {
+            f = f - (float)Math.Floor(f);
+            f = f * 2;
+            if (f > 1) f = 2 - f;
+            return f;
+        }
+
         protected override void Render()
         {
-            glClearColor(1, 0, 0, 1);
+            i++;
+            float r = Flip(0.5f + i / 400.0f);
+            float g = Flip(0.3f + i / 680.0f);
+            float b = Flip(0.8f + i / 840.0f);
+            glClearColor(r, g, b, 1);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             SwapBuffers();
         }
