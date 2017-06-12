@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,7 +8,8 @@
     <RootNamespace>Bare</RootNamespace>
     <AssemblyName>baregame</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <Description>	</Description>
+    <Description>
+    </Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,22 +66,17 @@
     <Compile Include="Geometry\Vec3.cs" />
     <Compile Include="Geometry\Vec4.cs" />
     <Compile Include="Devices\Stopwatch.cs" />
-    <Compile Include="Extensions\EmptyClass.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interop\" />
-    <Folder Include="Devices\" />
-    <Folder Include="Geometry\" />
-    <Folder Include="Devices\Windows\" />
-    <Folder Include="Devices\Displays\" />
-    <Folder Include="Devices\Events\" />
-    <Folder Include="Devices\Keyboard\" />
-    <Folder Include="Extensions\" />
+    <Compile Include="Extensions\ArrayExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="baregame.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SDL2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -317,10 +317,7 @@ namespace Bare.Interop
         public const int GL_MAX_RENDERBUFFER_SIZE = 0x84E8;
         public const int GL_INVALID_FRAMEBUFFER_OPERATION = 0x0506;
 
-        /// <summary>
-        /// Delegates contains the function definitions for OpenGL ES 2.0.
-        /// </summary>
-        public static class Delegates
+        private static class Delegates
         {
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void glActiveTexture(int texture);
@@ -614,151 +611,889 @@ namespace Bare.Interop
             public delegate void glViewport(int x, int y, int width, int height);
         }
 
-        public static Delegates.glActiveTexture glActiveTexture;
-        public static Delegates.glAttachShader glAttachShader;
-        public static Delegates.glBindAttribLocation glBindAttribLocation;
-        public static Delegates.glBindBuffer glBindBuffer;
-        public static Delegates.glBindFramebuffer glBindFramebuffer;
-        public static Delegates.glBindRenderbuffer glBindRenderbuffer;
-        public static Delegates.glBindTexture glBindTexture;
-        public static Delegates.glBlendColor glBlendColor;
-        public static Delegates.glBlendEquation glBlendEquation;
-        public static Delegates.glBlendEquationSeparate glBlendEquationSeparate;
-        public static Delegates.glBlendFunc glBlendFunc;
-        public static Delegates.glBlendFuncSeparate glBlendFuncSeparate;
-        public static Delegates.glBufferData glBufferData;
-        public static Delegates.glBufferSubData glBufferSubData;
-        public static Delegates.glCheckFramebufferStatus glCheckFramebufferStatus;
-        public static Delegates.glClear glClear;
-        public static Delegates.glClearColor glClearColor;
-        public static Delegates.glClearDepthf glClearDepthf;
-        public static Delegates.glClearStencil glClearStencil;
-        public static Delegates.glColorMask glColorMask;
-        public static Delegates.glCompileShader glCompileShader;
-        public static Delegates.glCompressedTexImage2D glCompressedTexImage2D;
-        public static Delegates.glCompressedTexSubImage2D glCompressedTexSubImage2D;
-        public static Delegates.glCopyTexImage2D glCopyTexImage2D;
-        public static Delegates.glCopyTexSubImage2D glCopyTexSubImage2D;
-        public static Delegates.glCreateProgram glCreateProgram;
-        public static Delegates.glCreateShader glCreateShader;
-        public static Delegates.glCullFace glCullFace;
-        public static Delegates.glDeleteBuffers _glDeleteBuffers;
-        public static Delegates.glDeleteFramebuffers _glDeleteFramebuffers;
-        public static Delegates.glDeleteProgram glDeleteProgram;
-        public static Delegates.glDeleteRenderbuffers _glDeleteRenderbuffers;
-        public static Delegates.glDeleteShader glDeleteShader;
-        public static Delegates.glDeleteTextures _glDeleteTextures;
-        public static Delegates.glDepthFunc glDepthFunc;
-        public static Delegates.glDepthMask glDepthMask;
-        public static Delegates.glDepthRangef glDepthRangef;
-        public static Delegates.glDetachShader glDetachShader;
-        public static Delegates.glDisable glDisable;
-        public static Delegates.glDisableVertexAttribArray glDisableVertexAttribArray;
-        public static Delegates.glDrawArrays glDrawArrays;
-        public static Delegates.glDrawElements glDrawElements;
-        public static Delegates.glEnable glEnable;
-        public static Delegates.glEnableVertexAttribArray glEnableVertexAttribArray;
-        public static Delegates.glFinish glFinish;
-        public static Delegates.glFlush glFlush;
-        public static Delegates.glFramebufferRenderbuffer glFramebufferRenderbuffer;
-        public static Delegates.glFramebufferTexture2D glFramebufferTexture2D;
-        public static Delegates.glFrontFace glFrontFace;
-        public static Delegates.glGenBuffers _glGenBuffers;
-        public static Delegates.glGenerateMipmap glGenerateMipmap;
-        public static Delegates.glGenFramebuffers _glGenFramebuffers;
-        public static Delegates.glGenRenderbuffers _glGenRenderbuffers;
-        public static Delegates.glGenTextures _glGenTextures;
-        public static Delegates.glGetActiveAttrib _glGetActiveAttrib;
-        public static Delegates.glGetActiveUniform _glGetActiveUniform;
-        public static Delegates.glGetAttachedShaders _glGetAttachedShaders;
-        public static Delegates.glGetAttribLocation glGetAttribLocation;
-        public static Delegates.glGetBooleanv _glGetBooleanv;
-        public static Delegates.glGetBufferParameteriv _glGetBufferParameteriv;
-        public static Delegates.glGetError glGetError;
-        public static Delegates.glGetFloatv _glGetFloatv;
-        public static Delegates.glGetFramebufferAttachmentParameteriv _glGetFramebufferAttachmentParameteriv;
-        public static Delegates.glGetIntegerv _glGetIntegerv;
-        public static Delegates.glGetPointerv _glGetPointerv;
-        public static Delegates.glGetProgramInfoLog glGetProgramInfoLog;
-        public static Delegates.glGetProgramiv _glGetProgramiv;
-        public static Delegates.glGetRenderbufferParameteriv _glGetRenderbufferParameteriv;
-        public static Delegates.glGetShaderInfoLog _glGetShaderInfoLog;
-        public static Delegates.glGetShaderiv _glGetShaderiv;
-        public static Delegates.glGetShaderPrecisionFormat glGetShaderPrecisionFormat;
-        public static Delegates.glGetShaderSource glGetShaderSource;
-        public static Delegates.glGetString _glGetString;
-        public static Delegates.glGetTexParameterfv _glGetTexParameterfv;
-        public static Delegates.glGetTexParameteriv _glGetTexParameteriv;
-        public static Delegates.glGetUniformfv _glGetUniformfv;
-        public static Delegates.glGetUniformiv _glGetUniformiv;
-        public static Delegates.glGetUniformLocation glGetUniformLocation;
-        public static Delegates.glGetVertexAttribfv glGetVertexAttribfv;
-        public static Delegates.glGetVertexAttribiv glGetVertexAttribiv;
-        public static Delegates.glGetVertexAttribPointerv glGetVertexAttribPointerv;
-        public static Delegates.glHint glHint;
-        public static Delegates.glIsBuffer glIsBuffer;
-        public static Delegates.glIsEnabled glIsEnabled;
-        public static Delegates.glIsFramebuffer glIsFramebuffer;
-        public static Delegates.glIsProgram glIsProgram;
-        public static Delegates.glIsRenderbuffer glIsRenderbuffer;
-        public static Delegates.glIsShader glIsShader;
-        public static Delegates.glIsTexture glIsTexture;
-        public static Delegates.glLineWidth glLineWidth;
-        public static Delegates.glLinkProgram glLinkProgram;
-        public static Delegates.glPixelStorei glPixelStorei;
-        public static Delegates.glPolygonOffset glPolygonOffset;
-        public static Delegates.glReadPixels glReadPixels;
-        public static Delegates.glReleaseShaderCompiler glReleaseShaderCompiler;
-        public static Delegates.glRenderbufferStorage glRenderbufferStorage;
-        public static Delegates.glSampleCoverage glSampleCoverage;
-        public static Delegates.glScissor glScissor;
-        public static Delegates.glShaderBinary glShaderBinary;
-        public static Delegates.glShaderSource _glShaderSource;
-        public static Delegates.glStencilFunc glStencilFunc;
-        public static Delegates.glStencilFuncSeparate glStencilFuncSeparate;
-        public static Delegates.glStencilMask glStencilMask;
-        public static Delegates.glStencilMaskSeparate glStencilMaskSeparate;
-        public static Delegates.glStencilOp glStencilOp;
-        public static Delegates.glStencilOpSeparate glStencilOpSeparate;
-        public static Delegates.glTexImage2D glTexImage2D;
-        public static Delegates.glTexParameterf glTexParameterf;
-        public static Delegates.glTexParameterfv glTexParameterfv;
-        public static Delegates.glTexParameteri glTexParameteri;
-        public static Delegates.glTexParameteriv glTexParameteriv;
-        public static Delegates.glTexSubImage2D glTexSubImage2D;
-        public static Delegates.glUniform1f glUniform1f;
-        public static Delegates.glUniform1fv glUniform1fv;
-        public static Delegates.glUniform1i glUniform1i;
-        public static Delegates.glUniform1iv glUniform1iv;
-        public static Delegates.glUniform2f glUniform2f;
-        public static Delegates.glUniform2fv glUniform2fv;
-        public static Delegates.glUniform2i glUniform2i;
-        public static Delegates.glUniform2iv glUniform2iv;
-        public static Delegates.glUniform3f glUniform3f;
-        public static Delegates.glUniform3fv glUniform3fv;
-        public static Delegates.glUniform3i glUniform3i;
-        public static Delegates.glUniform3iv glUniform3iv;
-        public static Delegates.glUniform4f glUniform4f;
-        public static Delegates.glUniform4fv glUniform4fv;
-        public static Delegates.glUniform4i glUniform4i;
-        public static Delegates.glUniform4iv glUniform4iv;
-        public static Delegates.glUniformMatrix2fv glUniformMatrix2fv;
-        public static Delegates.glUniformMatrix3fv glUniformMatrix3fv;
-        public static Delegates.glUniformMatrix4fv glUniformMatrix4fv;
-        public static Delegates.glUseProgram glUseProgram;
-        public static Delegates.glValidateProgram glValidateProgram;
-        public static Delegates.glVertexAttrib1f glVertexAttrib1f;
-        public static Delegates.glVertexAttrib1fv glVertexAttrib1fv;
-        public static Delegates.glVertexAttrib2f glVertexAttrib2f;
-        public static Delegates.glVertexAttrib2fv glVertexAttrib2fv;
-        public static Delegates.glVertexAttrib3f glVertexAttrib3f;
-        public static Delegates.glVertexAttrib3fv glVertexAttrib3fv;
-        public static Delegates.glVertexAttrib4f glVertexAttrib4f;
-        public static Delegates.glVertexAttrib4fv glVertexAttrib4fv;
-        public static Delegates.glVertexAttribPointer glVertexAttribPointer;
-        public static Delegates.glViewport glViewport;
+        private static Delegates.glActiveTexture _glActiveTexture;
+        private static Delegates.glAttachShader _glAttachShader;
+        private static Delegates.glBindAttribLocation _glBindAttribLocation;
+        private static Delegates.glBindBuffer _glBindBuffer;
+        private static Delegates.glBindFramebuffer _glBindFramebuffer;
+        private static Delegates.glBindRenderbuffer _glBindRenderbuffer;
+        private static Delegates.glBindTexture _glBindTexture;
+        private static Delegates.glBlendColor _glBlendColor;
+        private static Delegates.glBlendEquation _glBlendEquation;
+        private static Delegates.glBlendEquationSeparate _glBlendEquationSeparate;
+        private static Delegates.glBlendFunc _glBlendFunc;
+        private static Delegates.glBlendFuncSeparate _glBlendFuncSeparate;
+        private static Delegates.glBufferData _glBufferData;
+        private static Delegates.glBufferSubData _glBufferSubData;
+        private static Delegates.glCheckFramebufferStatus _glCheckFramebufferStatus;
+        private static Delegates.glClear _glClear;
+        private static Delegates.glClearColor _glClearColor;
+        private static Delegates.glClearDepthf _glClearDepthf;
+        private static Delegates.glClearStencil _glClearStencil;
+        private static Delegates.glColorMask _glColorMask;
+        private static Delegates.glCompileShader _glCompileShader;
+        private static Delegates.glCompressedTexImage2D _glCompressedTexImage2D;
+        private static Delegates.glCompressedTexSubImage2D _glCompressedTexSubImage2D;
+        private static Delegates.glCopyTexImage2D _glCopyTexImage2D;
+        private static Delegates.glCopyTexSubImage2D _glCopyTexSubImage2D;
+        private static Delegates.glCreateProgram _glCreateProgram;
+        private static Delegates.glCreateShader _glCreateShader;
+        private static Delegates.glCullFace _glCullFace;
+        private static Delegates.glDebugMessageCallback _glDebugMessageCallback;
+        private static Delegates.glDeleteBuffers _glDeleteBuffers;
+        private static Delegates.glDeleteFramebuffers _glDeleteFramebuffers;
+        private static Delegates.glDeleteProgram _glDeleteProgram;
+        private static Delegates.glDeleteRenderbuffers _glDeleteRenderbuffers;
+        private static Delegates.glDeleteShader _glDeleteShader;
+        private static Delegates.glDeleteTextures _glDeleteTextures;
+        private static Delegates.glDepthFunc _glDepthFunc;
+        private static Delegates.glDepthMask _glDepthMask;
+        private static Delegates.glDepthRangef _glDepthRangef;
+        private static Delegates.glDetachShader _glDetachShader;
+        private static Delegates.glDisable _glDisable;
+        private static Delegates.glDisableVertexAttribArray _glDisableVertexAttribArray;
+        private static Delegates.glDrawArrays _glDrawArrays;
+        private static Delegates.glDrawElements _glDrawElements;
+        private static Delegates.glEnable _glEnable;
+        private static Delegates.glEnableVertexAttribArray _glEnableVertexAttribArray;
+        private static Delegates.glFinish _glFinish;
+        private static Delegates.glFlush _glFlush;
+        private static Delegates.glFramebufferRenderbuffer _glFramebufferRenderbuffer;
+        private static Delegates.glFramebufferTexture2D _glFramebufferTexture2D;
+        private static Delegates.glFrontFace _glFrontFace;
+        private static Delegates.glGenBuffers _glGenBuffers;
+        private static Delegates.glGenerateMipmap _glGenerateMipmap;
+        private static Delegates.glGenFramebuffers _glGenFramebuffers;
+        private static Delegates.glGenRenderbuffers _glGenRenderbuffers;
+        private static Delegates.glGenTextures _glGenTextures;
+        private static Delegates.glGetActiveAttrib _glGetActiveAttrib;
+        private static Delegates.glGetActiveUniform _glGetActiveUniform;
+        private static Delegates.glGetAttachedShaders _glGetAttachedShaders;
+        private static Delegates.glGetAttribLocation _glGetAttribLocation;
+        private static Delegates.glGetBooleanv _glGetBooleanv;
+        private static Delegates.glGetBufferParameteriv _glGetBufferParameteriv;
+        private static Delegates.glGetError _glGetError;
+        private static Delegates.glGetFloatv _glGetFloatv;
+        private static Delegates.glGetFramebufferAttachmentParameteriv _glGetFramebufferAttachmentParameteriv;
+        private static Delegates.glGetIntegerv _glGetIntegerv;
+        private static Delegates.glGetPointerv _glGetPointerv;
+        private static Delegates.glGetProgramInfoLog _glGetProgramInfoLog;
+        private static Delegates.glGetProgramiv _glGetProgramiv;
+        private static Delegates.glGetRenderbufferParameteriv _glGetRenderbufferParameteriv;
+        private static Delegates.glGetShaderInfoLog _glGetShaderInfoLog;
+        private static Delegates.glGetShaderiv _glGetShaderiv;
+        private static Delegates.glGetShaderPrecisionFormat _glGetShaderPrecisionFormat;
+        private static Delegates.glGetShaderSource _glGetShaderSource;
+        private static Delegates.glGetString _glGetString;
+        private static Delegates.glGetTexParameterfv _glGetTexParameterfv;
+        private static Delegates.glGetTexParameteriv _glGetTexParameteriv;
+        private static Delegates.glGetUniformfv _glGetUniformfv;
+        private static Delegates.glGetUniformiv _glGetUniformiv;
+        private static Delegates.glGetUniformLocation _glGetUniformLocation;
+        private static Delegates.glGetVertexAttribfv _glGetVertexAttribfv;
+        private static Delegates.glGetVertexAttribiv _glGetVertexAttribiv;
+        private static Delegates.glGetVertexAttribPointerv _glGetVertexAttribPointerv;
+        private static Delegates.glHint _glHint;
+        private static Delegates.glIsBuffer _glIsBuffer;
+        private static Delegates.glIsEnabled _glIsEnabled;
+        private static Delegates.glIsFramebuffer _glIsFramebuffer;
+        private static Delegates.glIsProgram _glIsProgram;
+        private static Delegates.glIsRenderbuffer _glIsRenderbuffer;
+        private static Delegates.glIsShader _glIsShader;
+        private static Delegates.glIsTexture _glIsTexture;
+        private static Delegates.glLineWidth _glLineWidth;
+        private static Delegates.glLinkProgram _glLinkProgram;
+        private static Delegates.glObjectPtrLabel _glObjectPtrLabel;
+        private static Delegates.glPixelStorei _glPixelStorei;
+        private static Delegates.glPolygonOffset _glPolygonOffset;
+        private static Delegates.glReadPixels _glReadPixels;
+        private static Delegates.glReleaseShaderCompiler _glReleaseShaderCompiler;
+        private static Delegates.glRenderbufferStorage _glRenderbufferStorage;
+        private static Delegates.glSampleCoverage _glSampleCoverage;
+        private static Delegates.glScissor _glScissor;
+        private static Delegates.glShaderBinary _glShaderBinary;
+        private static Delegates.glShaderSource _glShaderSource;
+        private static Delegates.glStencilFunc _glStencilFunc;
+        private static Delegates.glStencilFuncSeparate _glStencilFuncSeparate;
+        private static Delegates.glStencilMask _glStencilMask;
+        private static Delegates.glStencilMaskSeparate _glStencilMaskSeparate;
+        private static Delegates.glStencilOp _glStencilOp;
+        private static Delegates.glStencilOpSeparate _glStencilOpSeparate;
+        private static Delegates.glTexImage2D _glTexImage2D;
+        private static Delegates.glTexParameterf _glTexParameterf;
+        private static Delegates.glTexParameterfv _glTexParameterfv;
+        private static Delegates.glTexParameteri _glTexParameteri;
+        private static Delegates.glTexParameteriv _glTexParameteriv;
+        private static Delegates.glTexSubImage2D _glTexSubImage2D;
+        private static Delegates.glUniform1f _glUniform1f;
+        private static Delegates.glUniform1fv _glUniform1fv;
+        private static Delegates.glUniform1i _glUniform1i;
+        private static Delegates.glUniform1iv _glUniform1iv;
+        private static Delegates.glUniform2f _glUniform2f;
+        private static Delegates.glUniform2fv _glUniform2fv;
+        private static Delegates.glUniform2i _glUniform2i;
+        private static Delegates.glUniform2iv _glUniform2iv;
+        private static Delegates.glUniform3f _glUniform3f;
+        private static Delegates.glUniform3fv _glUniform3fv;
+        private static Delegates.glUniform3i _glUniform3i;
+        private static Delegates.glUniform3iv _glUniform3iv;
+        private static Delegates.glUniform4f _glUniform4f;
+        private static Delegates.glUniform4fv _glUniform4fv;
+        private static Delegates.glUniform4i _glUniform4i;
+        private static Delegates.glUniform4iv _glUniform4iv;
+        private static Delegates.glUniformMatrix2fv _glUniformMatrix2fv;
+        private static Delegates.glUniformMatrix3fv _glUniformMatrix3fv;
+        private static Delegates.glUniformMatrix4fv _glUniformMatrix4fv;
+        private static Delegates.glUseProgram _glUseProgram;
+        private static Delegates.glValidateProgram _glValidateProgram;
+        private static Delegates.glVertexAttrib1f _glVertexAttrib1f;
+        private static Delegates.glVertexAttrib1fv _glVertexAttrib1fv;
+        private static Delegates.glVertexAttrib2f _glVertexAttrib2f;
+        private static Delegates.glVertexAttrib2fv _glVertexAttrib2fv;
+        private static Delegates.glVertexAttrib3f _glVertexAttrib3f;
+        private static Delegates.glVertexAttrib3fv _glVertexAttrib3fv;
+        private static Delegates.glVertexAttrib4f _glVertexAttrib4f;
+        private static Delegates.glVertexAttrib4fv _glVertexAttrib4fv;
+        private static Delegates.glVertexAttribPointer _glVertexAttribPointer;
+        private static Delegates.glViewport _glViewport;
 
         #region Safer functions
+        public static void glActiveTexture(int texture)
+        {
+            _glActiveTexture(texture);
+        }
+
+        public static void glAttachShader(int program, int shader)
+        {
+            _glAttachShader(program, shader);
+        }
+
+        public static void glBindAttribLocation(int program, int index, string name)
+        {
+            var n = Marshal.StringToHGlobalAnsi(name);
+            _glBindAttribLocation(program, index, n);
+            Marshal.FreeHGlobal(n);
+        }
+
+        public static void glBindBuffer(int target, int buffer)
+        {
+            _glBindBuffer(target, buffer);
+        }
+
+        public static void glBindFramebuffer(int target, int framebuffer)
+        {
+            _glBindFramebuffer(target, framebuffer);
+        }
+
+        public static void glBindRenderbuffer(int target, int renderbuffer)
+        {
+            _glBindRenderbuffer(target, renderbuffer);
+        }
+
+        public static void glBindTexture(int target, int texture)
+        {
+            _glBindTexture(target, texture);
+        }
+
+        public static void glBlendColor(float red, float green, float blue, float alpha)
+        {
+            _glBlendColor(red, green, blue, alpha);
+        }
+
+        public static void glBlendEquation(int mode)
+        {
+            _glBlendEquation(mode);
+        }
+
+        public static void glBlendEquationSeparate(int modeRGB, int modeAlpha)
+        {
+            _glBlendEquationSeparate(modeRGB, modeAlpha);
+        }
+
+        public static void glBlendFunc(int sfactor, int dfactor)
+        {
+            _glBlendFunc(sfactor, dfactor);
+        }
+
+        /*
+        public static void glBlendFuncSeparate(int sfactorRGB, int dfactorRGB, int sfactorAlpha, int dfactorAlpha)
+        {
+            _glBlendFuncSeparate();
+        }
+
+        public static void glBufferData(int target, IntPtr size, IntPtr data, int usage)
+        {
+            _glBufferData();
+        }
+
+        public static void glBufferSubData(int target, IntPtr offset, IntPtr size, IntPtr data)
+        {
+            _glBufferSubData();
+        }
+
+        public static int glCheckFramebufferStatus(int target)
+        {
+            _glCheckFramebufferStatus();
+        }
+        */
+
+        public static void glClear(int mask)
+        {
+            _glClear(mask);
+        } 
+
+        public static void glClearColor(float red, float green, float blue, float alpha)
+        {
+            _glClearColor(red, green, blue, alpha);
+        }
+
+        public static void glClearDepthf(float d)
+        {
+            _glClearDepthf(d);
+        }
+
+        public static void glClearStencil(int s)
+        {
+            _glClearStencil(s);
+        }
+
+        public static void glColorMask(bool red, bool green, bool blue, bool alpha)
+        {
+            _glColorMask(red, green, blue, alpha);
+        }
+
+        public static void glCompileShader(int shader)
+        {
+            _glCompileShader(shader);
+        }
+
+        /*
+        public static void glCompressedTexImage2D(int target, int level, int internalformat, int width, int height, int border, int imageSize, IntPtr data)
+        {
+            _glCompressedTexImage2D();
+        }
+
+        public static void glCompressedTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int format, int imageSize, IntPtr data)
+        {
+            _glCompressedTexSubImage2D();
+        }
+
+        public static void glCopyTexImage2D(int target, int level, int internalformat, int x, int y, int width, int height, int border)
+        {
+            _glCopyTexImage2D(target, level, internalformat, x, y, width, height, border);
+        }
+
+        public static void glCopyTexSubImage2D(int target, int level, int xoffset, int yoffset, int x, int y, int width, int height)
+        {
+            _glCopyTexSubImage2D(target, level, xoffset, yoffset, x, y, width, height);
+        }*/
+
+        public static int glCreateProgram()
+        {
+            return _glCreateProgram();
+        }
+
+        public static int glCreateShader(int type)
+        {
+            return _glCreateShader(type);
+        }
+
+        public static void glCullFace(int mode)
+        {
+            _glCullFace(mode);
+        }
+
+        public static unsafe void glDeleteBuffers(int[] buffers)
+        {
+            int n = buffers.Length;
+            fixed (int* b = buffers)
+                _glDeleteBuffers(n, b);
+        }
+
+        public static unsafe void glDeleteFramebuffers(int[] framebuffers)
+        {
+            int n = framebuffers.Length;
+            fixed (int* b = framebuffers)
+                _glDeleteFramebuffers(n, b);
+        }
+
+        public static void glDeleteProgram(int program)
+        {
+            _glDeleteProgram(program);
+        }
+
+        public static unsafe void glDeleteRenderbuffers(int[] renderbuffers)
+        {
+            int n = renderbuffers.Length;
+            fixed (int* b = renderbuffers)
+                _glDeleteRenderbuffers(n, b);
+        }
+
+        public static void glDeleteShader(int shader)
+        {
+            _glDeleteShader(shader);
+        }
+
+        public static unsafe void glDeleteTextures(int[] textures)
+        {
+            int n = textures.Length;
+            fixed (int* b = textures)
+                _glDeleteTextures(n, b);
+        }
+
+        /*public static void glDepthFunc(int func)
+        {
+            _glDepthFunc();
+        }
+
+        public static void glDepthMask(bool flag)
+        {
+            _glDepthMask();
+        }
+
+        public static void glDepthRangef(float n, float f)
+        {
+            _glDepthRangef();
+        }
+
+        public static void glDetachShader(int program, int shader)
+        {
+            _glDetachShader();
+        }
+
+        public static void glDisable(int cap)
+        {
+            _glDisable();
+        }
+
+        public static void glDisableVertexAttribArray(int index)
+        {
+            _glDisableVertexAttribArray();
+        }
+
+        public static void glDrawArrays(int mode, int first, int count)
+        {
+            _glDrawArrays();
+        }
+
+        public static void glDrawElements(int mode, int count, int type, IntPtr indices)
+        {
+            _glDrawElements();
+        }
+
+        public static void glEnable(int cap)
+        {
+            _glEnable();
+        }
+
+        public static void glEnableVertexAttribArray(int index)
+        {
+            _glEnableVertexAttribArray();
+        }*/
+
+        public static void glFinish()
+        {
+            _glFinish();
+        }
+
+        public static void glFlush()
+        {
+            _glFlush();
+        }
+
+        /*public static void glFramebufferRenderbuffer(int target, int attachment, int renderbuffertarget, int renderbuffer)
+        {
+            _glFramebufferRenderbuffer();
+        }
+
+        public static void glFramebufferTexture2D(int target, int attachment, int textarget, int texture, int level)
+        {
+            _glFramebufferTexture2D();
+        }
+
+        public static void glFrontFace(int mode)
+        {
+            _glFrontFace();
+        }
+
+        public static void glGenBuffers(int n, int* buffers)
+        {
+            _glGenBuffers();
+        }
+
+        public static void glGenerateMipmap(int target)
+        {
+            _glGenerateMipmap();
+        }
+
+        public static void glGenFramebuffers(int n, int* framebuffers)
+        {
+            _glGenFramebuffers();
+        }
+
+        public static void glGenRenderbuffers(int n, int* renderbuffers)
+        {
+            _glGenRenderbuffers();
+        }
+
+        public static void glGenTextures(int n, int* textures)
+        {
+            _glGenTextures();
+        }
+
+        public static void glGetActiveAttrib(int program, int index, int bufSize, int* length, int* size, int* type, IntPtr name)
+        {
+            _glGetActiveAttrib();
+        }
+
+        public static void glGetActiveUniform(int program, int index, int bufSize, int* length, int* size, int* type, IntPtr name)
+        {
+            _glGetActiveUniform();
+        }
+
+        public static void glGetAttachedShaders(int program, int maxCount, int* count, int* shaders)
+        {
+            _glGetAttachedShaders();
+        }
+
+        public static int glGetAttribLocation(int program, IntPtr name)
+        {
+            _glGetAttribLocation();
+        }
+
+        public static void glGetBooleanv(int pname, bool* data)
+        {
+            _glGetBooleanv();
+        }
+
+        public static void glGetBufferParameteriv(int target, int pname, int* values)
+        {
+            _glGetBufferParameteriv();
+        }
+
+        public static int glGetError()
+        {
+            _glGetError();
+        }
+
+        public static void glGetFloatv(int pname, float* data)
+        {
+            _glGetFloatv();
+        }
+
+        public static void glGetFramebufferAttachmentParameteriv(int target, int attachment, int pname, int* values)
+        {
+            _glGetFramebufferAttachmentParameteriv();
+        }
+
+        public static void glGetIntegerv(int pname, int* data)
+        {
+            _glGetIntegerv();
+        }
+
+        public static void glGetPointerv(int pname, IntPtr values)
+        {
+            _glGetPointerv();
+        }
+
+        public static void glGetProgramInfoLog(int program, int bufSize, int* length, IntPtr infoLog)
+        {
+            _glGetProgramInfoLog();
+        }
+
+        public static void glGetProgramiv(int program, int pname, int* values)
+        {
+            _glGetProgramiv();
+        }
+
+        public static void glGetRenderbufferParameteriv(int target, int pname, int* values)
+        {
+            _glGetRenderbufferParameteriv();
+        }
+
+        public static void glGetShaderInfoLog(int shader, int bufSize, int* length, IntPtr infoLog)
+        {
+            _glGetShaderInfoLog();
+        }
+
+        public static void glGetShaderiv(int shader, int pname, int* values)
+        {
+            _glGetShaderiv();
+        }
+
+        public static void glGetShaderPrecisionFormat(int shadertype, int precisiontype, int* range, int* precision)
+        {
+            _glGetShaderPrecisionFormat();
+        }
+
+        public static void glGetShaderSource(int shader, int bufSize, int* length, IntPtr source)
+        {
+            _glGetShaderSource();
+        }*/
+
+        public static string glGetString(int name)
+        {
+            var s = _glGetString(name);
+            return Marshal.PtrToStringAuto(s);
+        }
+
+        /*
+        public static void glGetTexParameterfv(int target, int pname, float* values)
+        {
+            _glGetTexParameterfv();
+        }
+
+        public static void glGetTexParameteriv(int target, int pname, int* values)
+        {
+            _glGetTexParameteriv();
+        }
+
+        public static void glGetUniformfv(int program, int location, float* values)
+        {
+            _glGetUniformfv();
+        }
+
+        public static void glGetUniformiv(int program, int location, int* values)
+        {
+            _glGetUniformiv();
+        }
+
+        public static int glGetUniformLocation(int program, IntPtr name)
+        {
+            _glGetUniformLocation();
+        }
+
+        public static void glGetVertexAttribfv(int index, int pname, float* values)
+        {
+            _glGetVertexAttribfv();
+        }
+
+        public static void glGetVertexAttribiv(int index, int pname, int* values)
+        {
+            _glGetVertexAttribiv();
+        }
+
+        public static void glGetVertexAttribPointerv(int index, int pname, out IntPtr pointer)
+        {
+            _glGetVertexAttribPointerv();
+        }
+
+        public static void glHint(int target, int mode)
+        {
+            _glHint();
+        }
+
+        public static byte glIsBuffer(int buffer)
+        {
+            _glIsBuffer();
+        }
+
+        public static byte glIsEnabled(int cap)
+        {
+            _glIsEnabled();
+        }
+
+        public static byte glIsFramebuffer(int framebuffer)
+        {
+            _glIsFramebuffer();
+        }
+
+        public static byte glIsProgram(int program)
+        {
+            _glIsProgram();
+        }
+
+        public static byte glIsRenderbuffer(int renderbuffer)
+        {
+            _glIsRenderbuffer();
+        }
+
+        public static byte glIsShader(int shader)
+        {
+            _glIsShader();
+        }
+
+        public static byte glIsTexture(int texture)
+        {
+            _glIsTexture();
+        }
+
+        public static void glLineWidth(float width)
+        {
+            _glLineWidth();
+        }
+
+        public static void glLinkProgram(int program)
+        {
+            _glLinkProgram();
+        }
+
+        public static void glObjectPtrLabel(IntPtr ptr, int length, IntPtr label)
+        {
+            _glObjectPtrLabel();
+        }
+
+        public static void glPixelStorei(int pname, int param)
+        {
+            _glPixelStorei();
+        }
+
+        public static void glPolygonOffset(float factor, float units)
+        {
+            _glPolygonOffset();
+        }
+
+        public static void glReadPixels(int x, int y, int width, int height, int format, int type, IntPtr pixels)
+        {
+            _glReadPixels();
+        }
+
+        public static void glReleaseShaderCompiler()
+        {
+            _glReleaseShaderCompiler();
+        }
+
+        public static void glRenderbufferStorage(int target, int internalformat, int width, int height)
+        {
+            _glRenderbufferStorage();
+        }
+
+        public static void glSampleCoverage(float value, bool invert)
+        {
+            _glSampleCoverage();
+        }
+
+        public static void glScissor(int x, int y, int width, int height)
+        {
+            _glScissor();
+        }
+
+        public static void glShaderBinary(int count, int* shaders, int binaryformat, IntPtr binary, int length)
+        {
+            _glShaderBinary();
+        }
+
+        public static void glShaderSource(int shader, int count, IntPtr strings, int* length)
+        {
+            _glShaderSource();
+        }
+
+        public static void glStencilFunc(int func, int addr, int mask)
+        {
+            _glStencilFunc();
+        }
+
+        public static void glStencilFuncSeparate(int face, int func, int addr, int mask)
+        {
+            _glStencilFuncSeparate();
+        }
+
+        public static void glStencilMask(int mask)
+        {
+            _glStencilMask();
+        }
+
+        public static void glStencilMaskSeparate(int face, int mask)
+        {
+            _glStencilMaskSeparate();
+        }
+
+        public static void glStencilOp(int fail, int zfail, int zpass)
+        {
+            _glStencilOp();
+        }
+
+        public static void glStencilOpSeparate(int face, int sfail, int dpfail, int dppass)
+        {
+            _glStencilOpSeparate();
+        }
+
+        public static void glTexImage2D(int target, int level, int internalformat, int width, int height, int border, int format, int type, IntPtr pixels)
+        {
+            _glTexImage2D();
+        }
+
+        public static void glTexParameterf(int target, int pname, float param)
+        {
+            _glTexParameterf();
+        }
+
+        public static void glTexParameterfv(int target, int pname, float* values)
+        {
+            _glTexParameterfv();
+        }
+
+        public static void glTexParameteri(int target, int pname, int param)
+        {
+            _glTexParameteri();
+        }
+
+        public static void glTexParameteriv(int target, int pname, int* values)
+        {
+            _glTexParameteriv();
+        }
+
+        public static void glTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int format, int type, IntPtr pixels)
+        {
+            _glTexSubImage2D();
+        }
+
+        public static void glUniform1f(int location, float v0)
+        {
+            _glUniform1f();
+        }
+
+        public static void glUniform1fv(int location, int count, float* value)
+        {
+            _glUniform1fv();
+        }
+
+        public static void glUniform1i(int location, int v0)
+        {
+            _glUniform1i();
+        }
+
+        public static void glUniform1iv(int location, int count, int* value)
+        {
+            _glUniform1iv();
+        }
+
+        public static void glUniform2f(int location, float v0, float v1)
+        {
+            _glUniform2f();
+        }
+
+        public static void glUniform2fv(int location, int count, float* value)
+        {
+            _glUniform2fv();
+        }
+
+        public static void glUniform2i(int location, int v0, int v1)
+        {
+            _glUniform2i();
+        }
+
+        public static void glUniform2iv(int location, int count, int* value)
+        {
+            _glUniform2iv();
+        }
+
+        public static void glUniform3f(int location, float v0, float v1, float v2)
+        {
+            _glUniform3f();
+        }
+
+        public static void glUniform3fv(int location, int count, float* value)
+        {
+            _glUniform3fv();
+        }
+
+        public static void glUniform3i(int location, int v0, int v1, int v2)
+        {
+            _glUniform3i();
+        }
+
+        public static void glUniform3iv(int location, int count, int* value)
+        {
+            _glUniform3iv();
+        }
+
+        public static void glUniform4f(int location, float v0, float v1, float v2, float v3)
+        {
+            _glUniform4f();
+        }
+
+        public static void glUniform4fv(int location, int count, float* value)
+        {
+            _glUniform4fv();
+        }
+
+        public static void glUniform4i(int location, int v0, int v1, int v2, int v3)
+        {
+            _glUniform4i();
+        }
+
+        public static void glUniform4iv(int location, int count, int* value)
+        {
+            _glUniform4iv();
+        }
+
+        public static void glUniformMatrix2fv(int location, int count, bool transpose, float* value)
+        {
+            _glUniformMatrix2fv();
+        }
+
+        public static void glUniformMatrix3fv(int location, int count, bool transpose, float* value)
+        {
+            _glUniformMatrix3fv();
+        }
+
+        public static void glUniformMatrix4fv(int location, int count, bool transpose, float* value)
+        {
+            _glUniformMatrix4fv();
+        }
+
+        public static void glUseProgram(int program)
+        {
+            _glUseProgram();
+        }
+
+        public static void glValidateProgram(int program)
+        {
+            _glValidateProgram();
+        }
+
+        public static void glVertexAttrib1f(int index, float x)
+        {
+            _glVertexAttrib1f();
+        }
+
+        public static void glVertexAttrib1fv(int index, float* v)
+        {
+            _glVertexAttrib1fv();
+        }
+
+        public static void glVertexAttrib2f(int index, float x, float y)
+        {
+            _glVertexAttrib2f();
+        }
+
+        public static void glVertexAttrib2fv(int index, float* v)
+        {
+            _glVertexAttrib2fv();
+        }
+
+        public static void glVertexAttrib3f(int index, float x, float y, float z)
+        {
+            _glVertexAttrib3f();
+        }
+
+        public static void glVertexAttrib3fv(int index, float* v)
+        {
+            _glVertexAttrib3fv();
+        }
+
+        public static void glVertexAttrib4f(int index, float x, float y, float z, float w)
+        {
+            _glVertexAttrib4f();
+        }
+
+        public static void glVertexAttrib4fv(int index, float* v)
+        {
+            _glVertexAttrib4fv();
+        }
+
+        public static void glVertexAttribPointer(int index, int size, int type, bool normalized, int stride, IntPtr pointer)
+        {
+            _glVertexAttribPointer();
+        }
+
+        public static void glViewport(int x, int y, int width, int height)
+        {
+            _glViewport(x, y, width, height);
+        }*/
+
+        /*
         public static unsafe void glDeleteBuffers(ref int[] buffers)
         {
             var n = buffers.Length;
@@ -1004,7 +1739,7 @@ namespace Bare.Interop
                 void* sources = &p;
                 _glShaderSource(shader, 1, (IntPtr)sources, null);
             }
-        }
+        }*/
         #endregion
 
         private static bool GetProcAddress<T>(out T t)
@@ -1025,149 +1760,149 @@ namespace Bare.Interop
             if (loaded)
                 return loaded;
             loaded =
-                GetProcAddress(out glActiveTexture) &&
-                GetProcAddress(out glAttachShader) &&
-                GetProcAddress(out glBindAttribLocation) &&
-                GetProcAddress(out glBindBuffer) &&
-                GetProcAddress(out glBindFramebuffer) &&
-                GetProcAddress(out glBindRenderbuffer) &&
-                GetProcAddress(out glBindTexture) &&
-                GetProcAddress(out glBlendColor) &&
-                GetProcAddress(out glBlendEquation) &&
-                GetProcAddress(out glBlendEquationSeparate) &&
-                GetProcAddress(out glBlendFunc) &&
-                GetProcAddress(out glBlendFuncSeparate) &&
-                GetProcAddress(out glBufferData) &&
-                GetProcAddress(out glBufferSubData) &&
-                GetProcAddress(out glCheckFramebufferStatus) &&
-                GetProcAddress(out glClear) &&
-                GetProcAddress(out glClearColor) &&
-                GetProcAddress(out glClearDepthf) &&
-                GetProcAddress(out glClearStencil) &&
-                GetProcAddress(out glColorMask) &&
-                GetProcAddress(out glCompileShader) &&
-                GetProcAddress(out glCompressedTexImage2D) &&
-                GetProcAddress(out glCompressedTexSubImage2D) &&
-                GetProcAddress(out glCopyTexImage2D) &&
-                GetProcAddress(out glCopyTexSubImage2D) &&
-                GetProcAddress(out glCreateProgram) &&
-                GetProcAddress(out glCreateShader) &&
-                GetProcAddress(out glCullFace) &&
+                GetProcAddress(out _glActiveTexture) &&
+                GetProcAddress(out _glAttachShader) &&
+                GetProcAddress(out _glBindAttribLocation) &&
+                GetProcAddress(out _glBindBuffer) &&
+                GetProcAddress(out _glBindFramebuffer) &&
+                GetProcAddress(out _glBindRenderbuffer) &&
+                GetProcAddress(out _glBindTexture) &&
+                GetProcAddress(out _glBlendColor) &&
+                GetProcAddress(out _glBlendEquation) &&
+                GetProcAddress(out _glBlendEquationSeparate) &&
+                GetProcAddress(out _glBlendFunc) &&
+                GetProcAddress(out _glBlendFuncSeparate) &&
+                GetProcAddress(out _glBufferData) &&
+                GetProcAddress(out _glBufferSubData) &&
+                GetProcAddress(out _glCheckFramebufferStatus) &&
+                GetProcAddress(out _glClear) &&
+                GetProcAddress(out _glClearColor) &&
+                GetProcAddress(out _glClearDepthf) &&
+                GetProcAddress(out _glClearStencil) &&
+                GetProcAddress(out _glColorMask) &&
+                GetProcAddress(out _glCompileShader) &&
+                GetProcAddress(out _glCompressedTexImage2D) &&
+                GetProcAddress(out _glCompressedTexSubImage2D) &&
+                GetProcAddress(out _glCopyTexImage2D) &&
+                GetProcAddress(out _glCopyTexSubImage2D) &&
+                GetProcAddress(out _glCreateProgram) &&
+                GetProcAddress(out _glCreateShader) &&
+                GetProcAddress(out _glCullFace) &&
                 GetProcAddress(out _glDeleteBuffers) &&
                 GetProcAddress(out _glDeleteFramebuffers) &&
-                GetProcAddress(out glDeleteProgram) &&
+                GetProcAddress(out _glDeleteProgram) &&
                 GetProcAddress(out _glDeleteRenderbuffers) &&
                 GetProcAddress(out _glDeleteShader) &&
                 GetProcAddress(out _glDeleteTextures) &&
-                GetProcAddress(out glDepthFunc) &&
-                GetProcAddress(out glDepthMask) &&
-                GetProcAddress(out glDepthRangef) &&
-                GetProcAddress(out glDetachShader) &&
-                GetProcAddress(out glDisable) &&
-                GetProcAddress(out glDisableVertexAttribArray) &&
-                GetProcAddress(out glDrawArrays) &&
-                GetProcAddress(out glDrawElements) &&
-                GetProcAddress(out glEnable) &&
-                GetProcAddress(out glEnableVertexAttribArray) &&
-                GetProcAddress(out glFinish) &&
-                GetProcAddress(out glFlush) &&
-                GetProcAddress(out glFramebufferRenderbuffer) &&
-                GetProcAddress(out glFramebufferTexture2D) &&
-                GetProcAddress(out glFrontFace) &&
+                GetProcAddress(out _glDepthFunc) &&
+                GetProcAddress(out _glDepthMask) &&
+                GetProcAddress(out _glDepthRangef) &&
+                GetProcAddress(out _glDetachShader) &&
+                GetProcAddress(out _glDisable) &&
+                GetProcAddress(out _glDisableVertexAttribArray) &&
+                GetProcAddress(out _glDrawArrays) &&
+                GetProcAddress(out _glDrawElements) &&
+                GetProcAddress(out _glEnable) &&
+                GetProcAddress(out _glEnableVertexAttribArray) &&
+                GetProcAddress(out _glFinish) &&
+                GetProcAddress(out _glFlush) &&
+                GetProcAddress(out _glFramebufferRenderbuffer) &&
+                GetProcAddress(out _glFramebufferTexture2D) &&
+                GetProcAddress(out _glFrontFace) &&
                 GetProcAddress(out _glGenBuffers) &&
-                GetProcAddress(out glGenerateMipmap) &&
+                GetProcAddress(out _glGenerateMipmap) &&
                 GetProcAddress(out _glGenFramebuffers) &&
                 GetProcAddress(out _glGenRenderbuffers) &&
                 GetProcAddress(out _glGenTextures) &&
-                GetProcAddress(out glGetActiveAttrib) &&
-                GetProcAddress(out glGetActiveUniform) &&
-                GetProcAddress(out glGetAttachedShaders) &&
-                GetProcAddress(out glGetAttribLocation) &&
-                GetProcAddress(out glGetBooleanv) &&
-                GetProcAddress(out glGetBufferParameteriv) &&
-                GetProcAddress(out glGetError) &&
-                GetProcAddress(out glGetFloatv) &&
-                GetProcAddress(out glGetFramebufferAttachmentParameteriv) &&
-                GetProcAddress(out glGetIntegerv) &&
-                GetProcAddress(out glGetPointerv) &&
-                GetProcAddress(out glGetProgramInfoLog) &&
-                GetProcAddress(out glGetProgramiv) &&
-                GetProcAddress(out glGetRenderbufferParameteriv) &&
-                GetProcAddress(out glGetShaderInfoLog) &&
-                GetProcAddress(out glGetShaderiv) &&
-                GetProcAddress(out glGetShaderPrecisionFormat) &&
-                GetProcAddress(out glGetShaderSource) &&
+                GetProcAddress(out _glGetActiveAttrib) &&
+                GetProcAddress(out _glGetActiveUniform) &&
+                GetProcAddress(out _glGetAttachedShaders) &&
+                GetProcAddress(out _glGetAttribLocation) &&
+                GetProcAddress(out _glGetBooleanv) &&
+                GetProcAddress(out _glGetBufferParameteriv) &&
+                GetProcAddress(out _glGetError) &&
+                GetProcAddress(out _glGetFloatv) &&
+                GetProcAddress(out _glGetFramebufferAttachmentParameteriv) &&
+                GetProcAddress(out _glGetIntegerv) &&
+                GetProcAddress(out _glGetPointerv) &&
+                GetProcAddress(out _glGetProgramInfoLog) &&
+                GetProcAddress(out _glGetProgramiv) &&
+                GetProcAddress(out _glGetRenderbufferParameteriv) &&
+                GetProcAddress(out _glGetShaderInfoLog) &&
+                GetProcAddress(out _glGetShaderiv) &&
+                GetProcAddress(out _glGetShaderPrecisionFormat) &&
+                GetProcAddress(out _glGetShaderSource) &&
                 GetProcAddress(out _glGetString) &&
-                GetProcAddress(out glGetTexParameterfv) &&
-                GetProcAddress(out glGetTexParameteriv) &&
-                GetProcAddress(out glGetUniformfv) &&
-                GetProcAddress(out glGetUniformiv) &&
-                GetProcAddress(out glGetUniformLocation) &&
-                GetProcAddress(out glGetVertexAttribfv) &&
-                GetProcAddress(out glGetVertexAttribiv) &&
-                GetProcAddress(out glGetVertexAttribPointerv) &&
-                GetProcAddress(out glHint) &&
-                GetProcAddress(out glIsBuffer) &&
-                GetProcAddress(out glIsEnabled) &&
-                GetProcAddress(out glIsFramebuffer) &&
-                GetProcAddress(out glIsProgram) &&
-                GetProcAddress(out glIsRenderbuffer) &&
-                GetProcAddress(out glIsShader) &&
-                GetProcAddress(out glIsTexture) &&
-                GetProcAddress(out glLineWidth) &&
-                GetProcAddress(out glLinkProgram) &&
-                GetProcAddress(out glPixelStorei) &&
-                GetProcAddress(out glPolygonOffset) &&
-                GetProcAddress(out glReadPixels) &&
-                GetProcAddress(out glReleaseShaderCompiler) &&
-                GetProcAddress(out glRenderbufferStorage) &&
-                GetProcAddress(out glSampleCoverage) &&
-                GetProcAddress(out glScissor) &&
-                GetProcAddress(out glShaderBinary) &&
+                GetProcAddress(out _glGetTexParameterfv) &&
+                GetProcAddress(out _glGetTexParameteriv) &&
+                GetProcAddress(out _glGetUniformfv) &&
+                GetProcAddress(out _glGetUniformiv) &&
+                GetProcAddress(out _glGetUniformLocation) &&
+                GetProcAddress(out _glGetVertexAttribfv) &&
+                GetProcAddress(out _glGetVertexAttribiv) &&
+                GetProcAddress(out _glGetVertexAttribPointerv) &&
+                GetProcAddress(out _glHint) &&
+                GetProcAddress(out _glIsBuffer) &&
+                GetProcAddress(out _glIsEnabled) &&
+                GetProcAddress(out _glIsFramebuffer) &&
+                GetProcAddress(out _glIsProgram) &&
+                GetProcAddress(out _glIsRenderbuffer) &&
+                GetProcAddress(out _glIsShader) &&
+                GetProcAddress(out _glIsTexture) &&
+                GetProcAddress(out _glLineWidth) &&
+                GetProcAddress(out _glLinkProgram) &&
+                GetProcAddress(out _glPixelStorei) &&
+                GetProcAddress(out _glPolygonOffset) &&
+                GetProcAddress(out _glReadPixels) &&
+                GetProcAddress(out _glReleaseShaderCompiler) &&
+                GetProcAddress(out _glRenderbufferStorage) &&
+                GetProcAddress(out _glSampleCoverage) &&
+                GetProcAddress(out _glScissor) &&
+                GetProcAddress(out _glShaderBinary) &&
                 GetProcAddress(out _glShaderSource) &&
-                GetProcAddress(out glStencilFunc) &&
-                GetProcAddress(out glStencilFuncSeparate) &&
-                GetProcAddress(out glStencilMask) &&
-                GetProcAddress(out glStencilMaskSeparate) &&
-                GetProcAddress(out glStencilOp) &&
-                GetProcAddress(out glStencilOpSeparate) &&
-                GetProcAddress(out glTexImage2D) &&
-                GetProcAddress(out glTexParameterf) &&
-                GetProcAddress(out glTexParameterfv) &&
-                GetProcAddress(out glTexParameteri) &&
-                GetProcAddress(out glTexParameteriv) &&
-                GetProcAddress(out glTexSubImage2D) &&
-                GetProcAddress(out glUniform1f) &&
-                GetProcAddress(out glUniform1fv) &&
-                GetProcAddress(out glUniform1i) &&
-                GetProcAddress(out glUniform1iv) &&
-                GetProcAddress(out glUniform2f) &&
-                GetProcAddress(out glUniform2fv) &&
-                GetProcAddress(out glUniform2i) &&
-                GetProcAddress(out glUniform2iv) &&
-                GetProcAddress(out glUniform3f) &&
-                GetProcAddress(out glUniform3fv) &&
-                GetProcAddress(out glUniform3i) &&
-                GetProcAddress(out glUniform3iv) &&
-                GetProcAddress(out glUniform4f) &&
-                GetProcAddress(out glUniform4fv) &&
-                GetProcAddress(out glUniform4i) &&
-                GetProcAddress(out glUniform4iv) &&
-                GetProcAddress(out glUniformMatrix2fv) &&
-                GetProcAddress(out glUniformMatrix3fv) &&
-                GetProcAddress(out glUniformMatrix4fv) &&
-                GetProcAddress(out glUseProgram) &&
-                GetProcAddress(out glValidateProgram) &&
-                GetProcAddress(out glVertexAttrib1f) &&
-                GetProcAddress(out glVertexAttrib1fv) &&
-                GetProcAddress(out glVertexAttrib2f) &&
-                GetProcAddress(out glVertexAttrib2fv) &&
-                GetProcAddress(out glVertexAttrib3f) &&
-                GetProcAddress(out glVertexAttrib3fv) &&
-                GetProcAddress(out glVertexAttrib4f) &&
-                GetProcAddress(out glVertexAttrib4fv) &&
-                GetProcAddress(out glVertexAttribPointer) &&
-                GetProcAddress(out glViewport);
+                GetProcAddress(out _glStencilFunc) &&
+                GetProcAddress(out _glStencilFuncSeparate) &&
+                GetProcAddress(out _glStencilMask) &&
+                GetProcAddress(out _glStencilMaskSeparate) &&
+                GetProcAddress(out _glStencilOp) &&
+                GetProcAddress(out _glStencilOpSeparate) &&
+                GetProcAddress(out _glTexImage2D) &&
+                GetProcAddress(out _glTexParameterf) &&
+                GetProcAddress(out _glTexParameterfv) &&
+                GetProcAddress(out _glTexParameteri) &&
+                GetProcAddress(out _glTexParameteriv) &&
+                GetProcAddress(out _glTexSubImage2D) &&
+                GetProcAddress(out _glUniform1f) &&
+                GetProcAddress(out _glUniform1fv) &&
+                GetProcAddress(out _glUniform1i) &&
+                GetProcAddress(out _glUniform1iv) &&
+                GetProcAddress(out _glUniform2f) &&
+                GetProcAddress(out _glUniform2fv) &&
+                GetProcAddress(out _glUniform2i) &&
+                GetProcAddress(out _glUniform2iv) &&
+                GetProcAddress(out _glUniform3f) &&
+                GetProcAddress(out _glUniform3fv) &&
+                GetProcAddress(out _glUniform3i) &&
+                GetProcAddress(out _glUniform3iv) &&
+                GetProcAddress(out _glUniform4f) &&
+                GetProcAddress(out _glUniform4fv) &&
+                GetProcAddress(out _glUniform4i) &&
+                GetProcAddress(out _glUniform4iv) &&
+                GetProcAddress(out _glUniformMatrix2fv) &&
+                GetProcAddress(out _glUniformMatrix3fv) &&
+                GetProcAddress(out _glUniformMatrix4fv) &&
+                GetProcAddress(out _glUseProgram) &&
+                GetProcAddress(out _glValidateProgram) &&
+                GetProcAddress(out _glVertexAttrib1f) &&
+                GetProcAddress(out _glVertexAttrib1fv) &&
+                GetProcAddress(out _glVertexAttrib2f) &&
+                GetProcAddress(out _glVertexAttrib2fv) &&
+                GetProcAddress(out _glVertexAttrib3f) &&
+                GetProcAddress(out _glVertexAttrib3fv) &&
+                GetProcAddress(out _glVertexAttrib4f) &&
+                GetProcAddress(out _glVertexAttrib4fv) &&
+                GetProcAddress(out _glVertexAttribPointer) &&
+                GetProcAddress(out _glViewport);
             return loaded;
         }
     }
