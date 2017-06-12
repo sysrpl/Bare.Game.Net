@@ -643,11 +643,11 @@ namespace Bare.Interop
         public static Delegates.glCreateShader glCreateShader;
         public static Delegates.glCullFace glCullFace;
         public static Delegates.glDeleteBuffers _glDeleteBuffers;
-        public static Delegates.glDeleteFramebuffers glDeleteFramebuffers;
+        public static Delegates.glDeleteFramebuffers _glDeleteFramebuffers;
         public static Delegates.glDeleteProgram glDeleteProgram;
-        public static Delegates.glDeleteRenderbuffers glDeleteRenderbuffers;
+        public static Delegates.glDeleteRenderbuffers _glDeleteRenderbuffers;
         public static Delegates.glDeleteShader glDeleteShader;
-        public static Delegates.glDeleteTextures glDeleteTextures;
+        public static Delegates.glDeleteTextures _glDeleteTextures;
         public static Delegates.glDepthFunc glDepthFunc;
         public static Delegates.glDepthMask glDepthMask;
         public static Delegates.glDepthRangef glDepthRangef;
@@ -665,32 +665,32 @@ namespace Bare.Interop
         public static Delegates.glFrontFace glFrontFace;
         public static Delegates.glGenBuffers _glGenBuffers;
         public static Delegates.glGenerateMipmap glGenerateMipmap;
-        public static Delegates.glGenFramebuffers glGenFramebuffers;
-        public static Delegates.glGenRenderbuffers glGenRenderbuffers;
-        public static Delegates.glGenTextures glGenTextures;
-        public static Delegates.glGetActiveAttrib glGetActiveAttrib;
-        public static Delegates.glGetActiveUniform glGetActiveUniform;
-        public static Delegates.glGetAttachedShaders glGetAttachedShaders;
+        public static Delegates.glGenFramebuffers _glGenFramebuffers;
+        public static Delegates.glGenRenderbuffers _glGenRenderbuffers;
+        public static Delegates.glGenTextures _glGenTextures;
+        public static Delegates.glGetActiveAttrib _glGetActiveAttrib;
+        public static Delegates.glGetActiveUniform _glGetActiveUniform;
+        public static Delegates.glGetAttachedShaders _glGetAttachedShaders;
         public static Delegates.glGetAttribLocation glGetAttribLocation;
-        public static Delegates.glGetBooleanv glGetBooleanv;
-        public static Delegates.glGetBufferParameteriv glGetBufferParameteriv;
+        public static Delegates.glGetBooleanv _glGetBooleanv;
+        public static Delegates.glGetBufferParameteriv _glGetBufferParameteriv;
         public static Delegates.glGetError glGetError;
-        public static Delegates.glGetFloatv glGetFloatv;
-        public static Delegates.glGetFramebufferAttachmentParameteriv glGetFramebufferAttachmentParameteriv;
-        public static Delegates.glGetIntegerv glGetIntegerv;
-        public static Delegates.glGetPointerv glGetPointerv;
+        public static Delegates.glGetFloatv _glGetFloatv;
+        public static Delegates.glGetFramebufferAttachmentParameteriv _glGetFramebufferAttachmentParameteriv;
+        public static Delegates.glGetIntegerv _glGetIntegerv;
+        public static Delegates.glGetPointerv _glGetPointerv;
         public static Delegates.glGetProgramInfoLog glGetProgramInfoLog;
-        public static Delegates.glGetProgramiv glGetProgramiv;
-        public static Delegates.glGetRenderbufferParameteriv glGetRenderbufferParameteriv;
-        public static Delegates.glGetShaderInfoLog glGetShaderInfoLog;
-        public static Delegates.glGetShaderiv glGetShaderiv;
+        public static Delegates.glGetProgramiv _glGetProgramiv;
+        public static Delegates.glGetRenderbufferParameteriv _glGetRenderbufferParameteriv;
+        public static Delegates.glGetShaderInfoLog _glGetShaderInfoLog;
+        public static Delegates.glGetShaderiv _glGetShaderiv;
         public static Delegates.glGetShaderPrecisionFormat glGetShaderPrecisionFormat;
         public static Delegates.glGetShaderSource glGetShaderSource;
         public static Delegates.glGetString _glGetString;
-        public static Delegates.glGetTexParameterfv glGetTexParameterfv;
-        public static Delegates.glGetTexParameteriv glGetTexParameteriv;
-        public static Delegates.glGetUniformfv glGetUniformfv;
-        public static Delegates.glGetUniformiv glGetUniformiv;
+        public static Delegates.glGetTexParameterfv _glGetTexParameterfv;
+        public static Delegates.glGetTexParameteriv _glGetTexParameteriv;
+        public static Delegates.glGetUniformfv _glGetUniformfv;
+        public static Delegates.glGetUniformiv _glGetUniformiv;
         public static Delegates.glGetUniformLocation glGetUniformLocation;
         public static Delegates.glGetVertexAttribfv glGetVertexAttribfv;
         public static Delegates.glGetVertexAttribiv glGetVertexAttribiv;
@@ -765,12 +765,226 @@ namespace Bare.Interop
             fixed (int* b = buffers)
                 _glDeleteBuffers(n, b);
         }
+
+        public static unsafe void glDeleteFrameBuffers(ref int[] frameBuffers)
+        {
+            var n = frameBuffers.Length;
+            fixed (int* b = frameBuffers)
+                _glDeleteFramebuffers(n, b);
+        }
+
+        public static unsafe void glDeleteRenderBuffers(ref int[] renderBuffers)
+        {
+            var n = renderBuffers.Length;
+            fixed (int* b = renderBuffers)
+               _glDeleteRenderbuffers(n, b);
+        }
+
+        public static unsafe void glDeleteTextures(ref int[] textures)
+        {
+            var n = textures.Length;
+            fixed (int* b = textures)
+                _glDeleteTextures(n, b);
+        }
+
         public static unsafe int[] glGenBuffers(int n)
         {
             var buffers = new int[n];
             fixed (int* b = buffers)
                 _glGenBuffers(n, b);
             return buffers;
+        }
+
+        public static unsafe int[] glGenFrameBuffers(int n)
+        {
+            var buffers = new int[n];
+            fixed (int* b = buffers)
+                _glGenFramebuffers(n, b);
+            return buffers;
+        }
+
+        public static unsafe int[] glGenRenderBuffers(int n)
+        {
+            var buffers = new int[n];
+            fixed (int* b = buffers)
+                _glGenRenderbuffers(n, b);
+            return buffers;
+        }
+
+        public static unsafe int[] glGenTextures(int n)
+        {
+            var buffers = new int[n];
+            fixed (int* b = buffers)
+                _glGenTextures(n, b);
+            return buffers;
+        }
+
+        public static unsafe void glGetActiveAttrib(int program, int index, out int size, out int type, out string name)
+        {
+            byte[] buffer = new byte[255];
+            buffer[0] = 0;
+            fixed (byte* b = buffer)
+            fixed (int* s = &size, t = &type)
+            {
+                IntPtr n = (IntPtr)b;
+                _glGetActiveAttrib(program, index, 255, null, s, t, n);
+                name = Marshal.PtrToStringAuto(n);
+            }
+        }
+
+        public static unsafe void glGetActiveUniform(int program, int index, out int size, out int type, out string name)
+        {
+            byte[] buffer = new byte[255];
+            buffer[0] = 0;
+            fixed (byte* b = buffer)
+            fixed (int* s = &size, t = &type)
+            {
+                IntPtr n = (IntPtr)b;
+                _glGetActiveUniform(program, index, 255, null, s, t, n);
+                name = Marshal.PtrToStringAuto(n);
+            }
+        }
+
+        public static unsafe int[] glGetAttachedShaders(int program)
+        {
+            int[] buffer = new int[20];
+            int count = 0;
+            fixed (int* b = buffer, c = &count)
+                _glGetAttachedShaders(program, 20, c, b);
+            return buffer.Subset(0, count);
+        }
+
+        public static unsafe bool glGetBooleanv(int pname)
+        {
+            bool b;
+            fixed (bool* p = &b)
+                _glGetBooleanv(pname, p);
+            return b;
+        }
+
+        public static unsafe int glGetBufferParameteriv(int target, int pname)
+        {
+            int i;
+            fixed (int* p = &i)
+                _glGetBufferParameteriv(target, pname, p);
+            return i;
+        }
+
+        public static unsafe float glGetFloatv(int pname)
+        {
+            float f;
+            fixed (float* p = &f)
+                _glGetFloatv(pname, p);
+            return f;
+        }
+
+        public static unsafe int glGetFrameBufferAttachmentParameteriv(int target, int attachment, int pname)
+        {
+            int i;
+            fixed (int* p = &i)
+                _glGetFramebufferAttachmentParameteriv(target, attachment, pname, p);
+            return i;
+
+        }
+
+        public static unsafe void glGetIntegerv(int pname, int* data)
+        {
+        }
+        public static unsafe void glGetProgramInfoLog(int program, int bufSize, int* length, IntPtr infoLog)
+        {
+        }
+        public static unsafe void glGetProgramiv(int program, int pname, int* values)
+        {
+        }
+        public static unsafe void glGetRenderbufferParameteriv(int target, int pname, int* values)
+        {
+        }
+        public static unsafe void glGetShaderInfoLog(int shader, int bufSize, int* length, IntPtr infoLog)
+        {
+        }
+        public static unsafe void glGetShaderiv(int shader, int pname, int* values)
+        {
+        }
+        public static unsafe void glGetShaderPrecisionFormat(int shadertype, int precisiontype, int* range, int* precision)
+        {
+        }
+        public static unsafe void glGetShaderSource(int shader, int bufSize, int* length, IntPtr source)
+        {
+        }
+        public static unsafe void glGetTexParameterfv(int target, int pname, float* values)
+        {
+        }
+        public static unsafe void glGetTexParameteriv(int target, int pname, int* values)
+        {
+        }
+        public static unsafe void glGetUniformfv(int program, int location, float* values)
+        {
+        }
+        public static unsafe void glGetUniformiv(int program, int location, int* values)
+        {
+        }
+        public static unsafe void glGetVertexAttribfv(int index, int pname, float* values)
+        {
+        }
+        public static unsafe void glGetVertexAttribiv(int index, int pname, int* values)
+        {
+        }
+        public static unsafe void glShaderBinary(int count, int* shaders, int binaryformat, IntPtr binary, int length)
+        {
+        }
+        public static unsafe void glShaderSource(int shader, int count, IntPtr strings, int* length)
+        {
+        }
+        public static unsafe void glTexParameterfv(int target, int pname, float* values)
+        {
+        }
+        public static unsafe void glTexParameteriv(int target, int pname, int* values)
+        {
+        }
+        public static unsafe void glUniform1fv(int location, int count, float* value)
+        {
+        }
+        public static unsafe void glUniform1iv(int location, int count, int* value)
+        {
+        }
+        public static unsafe void glUniform2fv(int location, int count, float* value)
+        {
+        }
+        public static unsafe void glUniform2iv(int location, int count, int* value)
+        {
+        }
+        public static unsafe void glUniform3fv(int location, int count, float* value)
+        {
+        }
+        public static unsafe void glUniform3iv(int location, int count, int* value)
+        {
+        }
+        public static unsafe void glUniform4fv(int location, int count, float* value)
+        {
+        }
+        public static unsafe void glUniform4iv(int location, int count, int* value)
+        {
+        }
+        public static unsafe void glUniformMatrix2fv(int location, int count, bool transpose, float* value)
+        {
+        }
+        public static unsafe void glUniformMatrix3fv(int location, int count, bool transpose, float* value)
+        {
+        }
+        public static unsafe void glUniformMatrix4fv(int location, int count, bool transpose, float* value)
+        {
+        }
+        public static unsafe void glVertexAttrib1fv(int index, float* v)
+        {
+        }
+        public static unsafe void glVertexAttrib2fv(int index, float* v)
+        {
+        }
+        public static unsafe void glVertexAttrib3fv(int index, float* v)
+        {
+        }
+        public static unsafe void glVertexAttrib4fv(int index, float* v)
+        {
         }
 
         public static string glGetString(int name)
@@ -840,11 +1054,11 @@ namespace Bare.Interop
                 GetProcAddress(out glCreateShader) &&
                 GetProcAddress(out glCullFace) &&
                 GetProcAddress(out _glDeleteBuffers) &&
-                GetProcAddress(out glDeleteFramebuffers) &&
+                GetProcAddress(out _glDeleteFramebuffers) &&
                 GetProcAddress(out glDeleteProgram) &&
-                GetProcAddress(out glDeleteRenderbuffers) &&
-                GetProcAddress(out glDeleteShader) &&
-                GetProcAddress(out glDeleteTextures) &&
+                GetProcAddress(out _glDeleteRenderbuffers) &&
+                GetProcAddress(out _glDeleteShader) &&
+                GetProcAddress(out _glDeleteTextures) &&
                 GetProcAddress(out glDepthFunc) &&
                 GetProcAddress(out glDepthMask) &&
                 GetProcAddress(out glDepthRangef) &&
@@ -862,9 +1076,9 @@ namespace Bare.Interop
                 GetProcAddress(out glFrontFace) &&
                 GetProcAddress(out _glGenBuffers) &&
                 GetProcAddress(out glGenerateMipmap) &&
-                GetProcAddress(out glGenFramebuffers) &&
-                GetProcAddress(out glGenRenderbuffers) &&
-                GetProcAddress(out glGenTextures) &&
+                GetProcAddress(out _glGenFramebuffers) &&
+                GetProcAddress(out _glGenRenderbuffers) &&
+                GetProcAddress(out _glGenTextures) &&
                 GetProcAddress(out glGetActiveAttrib) &&
                 GetProcAddress(out glGetActiveUniform) &&
                 GetProcAddress(out glGetAttachedShaders) &&

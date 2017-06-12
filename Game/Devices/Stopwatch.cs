@@ -33,9 +33,7 @@ namespace Bare.Devices
         /// </summary>
         public void Reset()
         {
-            frames = 0;
-            frameRate = 0;
-            seconds = 0;
+            frames = frameRate = seconds = 0;
             start = now = SDL_GetPerformanceCounter();
         }
 
@@ -49,8 +47,6 @@ namespace Bare.Devices
             if (s > seconds)
             {
                 int i = s - seconds;
-                if (i < 1)
-                    i = 1;
                 frameRate = frames / i;
                 frames = 1;
                 seconds = s;

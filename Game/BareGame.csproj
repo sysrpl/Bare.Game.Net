@@ -65,6 +65,7 @@
     <Compile Include="Geometry\Vec3.cs" />
     <Compile Include="Geometry\Vec4.cs" />
     <Compile Include="Devices\Stopwatch.cs" />
+    <Compile Include="Extensions\EmptyClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interop\" />
@@ -74,6 +75,7 @@
     <Folder Include="Devices\Displays\" />
     <Folder Include="Devices\Events\" />
     <Folder Include="Devices\Keyboard\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="baregame.dll.config">
