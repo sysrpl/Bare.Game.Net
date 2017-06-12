@@ -64,6 +64,7 @@
     <Compile Include="Geometry\Vec2.cs" />
     <Compile Include="Geometry\Vec3.cs" />
     <Compile Include="Geometry\Vec4.cs" />
+    <Compile Include="Devices\Stopwatch.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interop\" />

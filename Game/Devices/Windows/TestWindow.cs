@@ -6,7 +6,9 @@ namespace Bare.Devices
 {
     public class TestWindow : Window
     {
-        protected override void Logic(EventList events)
+        private int seconds;
+
+        protected override void Logic(EventList events, Stopwatch stopwatch)
         {
             foreach (var e in events)
             {
@@ -18,9 +20,16 @@ namespace Bare.Devices
                         Game.Quit();
                 }
             }
+            if (stopwatch.Seconds > seconds)
+            {
+                seconds = stopwatch.Seconds;
+                Console.WriteLine();
+                Console.WriteLine($"Frame rate: {stopwatch.FrameRate}");
+                Console.WriteLine();
+            }
+            if (stopwatch.Seconds > 10)
+                Game.Quit();
         }
-
-        private int i = 0;
 
         private static float Flip(float f)
         {
@@ -30,9 +39,9 @@ namespace Bare.Devices
             return f;
         }
 
-        protected override void Render()
+        protected override void Render(Stopwatch stopwatch)
         {
-            i++;
+            float i = (float)(stopwatch.Time * 60);
             float r = Flip(0.5f + i / 400.0f);
             float g = Flip(0.3f + i / 680.0f);
             float b = Flip(0.8f + i / 840.0f);
