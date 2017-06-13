@@ -8,6 +8,7 @@ namespace Bare.Devices
 {
     public class Window : IDisposable
     {
+        private Stopwatch stopwatch;
         private WindowStyle style;
         internal IntPtr window;
         internal IntPtr context;
@@ -23,12 +24,12 @@ namespace Bare.Devices
         internal bool CreateWindow()
         {
             CreateStyle(style);
-			var x = style.Centered ? SDL_WINDOWPOS_CENTERED : style.X;
+            var x = style.Centered ? SDL_WINDOWPOS_CENTERED : style.X;
             var y = style.Centered ? SDL_WINDOWPOS_CENTERED : style.Y;
             uint flags = SDL_WINDOW_OPENGL |
                 (style.Borderless ? SDL_WINDOW_BORDERLESS : 0) |
-                (style.InputGrabbed ? SDL_WINDOW_INPUT_GRABBED: 0) |
-				(style.Sizable ? SDL_WINDOW_RESIZABLE : 0) |
+                (style.InputGrabbed ? SDL_WINDOW_INPUT_GRABBED : 0) |
+                (style.Sizable ? SDL_WINDOW_RESIZABLE : 0) |
                 (style.Visible ? SDL_WINDOW_SHOWN | SDL_WINDOW_INPUT_FOCUS : SDL_WINDOW_HIDDEN) |
                 (style.Maximized ? SDL_WINDOW_MAXIMIZED : 0);
             if (style.WindowMode == WindowMode.Fullscreen)
@@ -52,13 +53,17 @@ namespace Bare.Devices
                 {
                     window = w;
                     context = c;
+<<<<<<< HEAD
                     ContextCreated();
+=======
+                    stopwatch.Reset();
+>>>>>>> 2fb7c6e1f524dfd707d1f6052118c26c152c1a4b
                     return true;
                 }
                 else
                 {
-					SDL_GL_DeleteContext(c);
-					SDL_DestroyWindow(w);
+                    SDL_GL_DeleteContext(c);
+                    SDL_DestroyWindow(w);
                     return false;
                 }
             }
@@ -74,6 +79,7 @@ namespace Bare.Devices
 
         public Window()
         {
+            stopwatch = new Stopwatch();
             style = new WindowStyle();
         }
 
@@ -140,9 +146,13 @@ namespace Bare.Devices
             if (WindowExists)
                 try
                 {
-                    Logic(events);
-                    SDL_GL_MakeCurrent(window, context);
-                    Render();
+                    stopwatch.Tick();
+                    Logic(events, stopwatch);
+                    if (WindowExists)
+                    {
+                        SDL_GL_MakeCurrent(window, context);
+                        Render(stopwatch);
+                    }
                 }
                 finally
                 {
@@ -151,6 +161,7 @@ namespace Bare.Devices
 
         }
 
+<<<<<<< HEAD
         protected virtual void ContextCreated()
         {
 
@@ -162,11 +173,14 @@ namespace Bare.Devices
         }
 
         protected virtual void Logic(EventList events)
+=======
+        protected virtual void Logic(EventList events, Stopwatch stopwatch)
+>>>>>>> 2fb7c6e1f524dfd707d1f6052118c26c152c1a4b
         {
 
         }
 
-        protected virtual void Render()
+        protected virtual void Render(Stopwatch stopwatch)
         {
         }
 

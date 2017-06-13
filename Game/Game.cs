@@ -65,6 +65,8 @@ namespace Bare
             SDL_Event e;
             while (SDL_PollEvent(out e) > 0)
             {
+                Console.Write(e.type);
+                Console.Write(" ");
                 switch (e.type)
                 {
                     case SDL_EventType.SDL_QUIT:

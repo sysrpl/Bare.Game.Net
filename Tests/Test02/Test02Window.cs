@@ -11,6 +11,7 @@ namespace Tests
 {
     public class Test02Window : Window
     {
+<<<<<<< HEAD:Tests/Test02/Test02Window.cs
         public static void Test()
         {
             WriteLine("Bare Game DataBuffer Tests");
@@ -19,6 +20,11 @@ namespace Tests
         }
 
         protected override void Logic(EventList events)
+=======
+        private int seconds;
+
+        protected override void Logic(EventList events, Stopwatch stopwatch)
+>>>>>>> 2fb7c6e1f524dfd707d1f6052118c26c152c1a4b:Game/Devices/Windows/TestWindow.cs
         {
             foreach (var e in events)
             {
@@ -29,9 +35,16 @@ namespace Tests
                         Game.Quit();
                 }
             }
+            if (stopwatch.Seconds > seconds)
+            {
+                seconds = stopwatch.Seconds;
+                Console.WriteLine();
+                Console.WriteLine($"Frame rate: {stopwatch.FrameRate}");
+                Console.WriteLine();
+            }
+            if (stopwatch.Seconds > 10)
+                Game.Quit();
         }
-
-        private int i = 0;
 
         private static float Flip(float f)
         {
@@ -41,9 +54,9 @@ namespace Tests
             return f;
         }
 
-        protected override void Render()
+        protected override void Render(Stopwatch stopwatch)
         {
-            i++;
+            float i = (float)(stopwatch.Time * 60);
             float r = Flip(0.5f + i / 400.0f);
             float g = Flip(0.3f + i / 680.0f);
             float b = Flip(0.8f + i / 840.0f);
