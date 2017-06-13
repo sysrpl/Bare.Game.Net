@@ -18,16 +18,19 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="MainClass.cs" />
     <Compile Include="Test01\Test01Window.cs" />
+    <Compile Include="Test02\Test02Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game\BareGame.csproj">
@@ -37,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test01\" />
+    <Folder Include="Test02\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

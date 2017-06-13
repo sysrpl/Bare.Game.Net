@@ -2,4 +2,5 @@ bin
 obj
 *.exe
 *.dll
+*.userprefs
 .DS_Store

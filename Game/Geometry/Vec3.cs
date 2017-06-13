@@ -34,5 +34,10 @@ namespace Bare.Geometry
             v1 = v1 * d;
             v2 = v2 * d;
         }
+
+        public override string ToString()
+        {
+            return string.Format("[Vec3: X={0}, Y={1}, Z={2}]", X, Y, Z);
+        }
     }
 }

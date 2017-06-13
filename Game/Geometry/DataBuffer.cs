@@ -23,6 +23,14 @@ namespace Bare.Geometry
             }
         }
 
+        public DataBuffer(T[] data)
+        {
+            buffer = current = IntPtr.Zero;
+            count = length = 0;
+            sizeOf = Marshal.SizeOf(typeof(T));
+            AddRange(data);
+        }
+
         public void Dispose()
         {
             if (count > 0)
@@ -103,7 +111,7 @@ namespace Bare.Geometry
 
         public T GetItem(int index)
         {
-            if (index <= count)
+            if (index < 0)
                 return default(T);
             if (index >= count)
                 return default(T);

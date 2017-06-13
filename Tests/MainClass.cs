@@ -7,7 +7,7 @@ namespace Tests
         [STAThread]
         public static void Main(string[] args)
         {
-            Test01Window.Test();
+            Test02Window.Test();
         }
     }
 }
