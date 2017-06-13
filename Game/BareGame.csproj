@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Bare</RootNamespace>
     <AssemblyName>baregame</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <Description>	</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -58,12 +58,13 @@
     <Compile Include="Devices\Keyboard\KeyState.cs" />
     <Compile Include="Devices\Windows\WindowOptions.cs" />
     <Compile Include="Devices\Windows\WindowStyle.cs" />
-    <Compile Include="Devices\Windows\TestWindow.cs" />
     <Compile Include="Devices\Events\EmptyClass.cs" />
     <Compile Include="Geometry\Mat4.cs" />
     <Compile Include="Geometry\Vec2.cs" />
     <Compile Include="Geometry\Vec3.cs" />
     <Compile Include="Geometry\Vec4.cs" />
+    <Compile Include="Geometry\DataBuffer.cs" />
+    <Compile Include="Geometry\Block.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interop\" />

@@ -8,7 +8,7 @@
     <RootNamespace>Tests</RootNamespace>
     <AssemblyName>Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <StartupObject>Tests.HardInfo</StartupObject>
+    <StartupObject>Tests.MainClass</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,13 +26,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="HardInfo.cs" />
+    <Compile Include="MainClass.cs" />
+    <Compile Include="Test01\Test01Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game\BareGame.csproj">
       <Project>{9698B114-4286-49A8-A29D-C69C3753AE59}</Project>
       <Name>BareGame</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Test01\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

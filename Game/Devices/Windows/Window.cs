@@ -52,6 +52,7 @@ namespace Bare.Devices
                 {
                     window = w;
                     context = c;
+                    ContextCreated();
                     return true;
                 }
                 else
@@ -84,9 +85,17 @@ namespace Bare.Devices
                 var c = context;
                 window = IntPtr.Zero;
                 context = IntPtr.Zero;
-                SDL_GL_MakeCurrent(IntPtr.Zero, IntPtr.Zero);
-                SDL_GL_DeleteContext(c);
-                SDL_DestroyWindow(w);
+                try
+                {
+                    SDL_GL_MakeCurrent(w, c);
+                    ContextDestroyed();
+                }
+                finally
+                {
+                    SDL_GL_MakeCurrent(IntPtr.Zero, IntPtr.Zero);
+                    SDL_GL_DeleteContext(c);
+                    SDL_DestroyWindow(w);
+                }
             }
         }
 
@@ -139,6 +148,16 @@ namespace Bare.Devices
                 {
                     SDL_GL_MakeCurrent(IntPtr.Zero, IntPtr.Zero);
                 }
+
+        }
+
+        protected virtual void ContextCreated()
+        {
+
+        }
+
+        protected virtual void ContextDestroyed()
+        {
 
         }
 
