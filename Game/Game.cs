@@ -1,6 +1,7 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Bare.Devices;
 
 using static Bare.Interop.SDL2;
@@ -65,8 +66,6 @@ namespace Bare
             SDL_Event e;
             while (SDL_PollEvent(out e) > 0)
             {
-                Console.Write(e.type);
-                Console.Write(" ");
                 switch (e.type)
                 {
                     case SDL_EventType.SDL_QUIT:
@@ -129,6 +128,16 @@ namespace Bare
                 SDL_Quit();
                 init = false;
             }
+        }
+
+        public static int SizeOf<T>(T t)
+        {
+            return Marshal.SizeOf(typeof(T));
+        }
+
+        public static IntPtr Next<T>(IntPtr p, T t)
+        {
+            return IntPtr.Add(p, Marshal.SizeOf(typeof(T)));
         }
 
         /// <summary>

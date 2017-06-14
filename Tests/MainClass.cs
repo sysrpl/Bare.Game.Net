@@ -7,7 +7,13 @@ namespace Tests
         [STAThread]
         public static void Main(string[] args)
         {
-            Test02Window.Test();
+            if (!Bare.Game.Init())
+            {
+                Console.WriteLine("Unable to find a display");
+                Console.WriteLine("done.");
+                return;
+            }
+            Test03Window.Test();
         }
     }
 }

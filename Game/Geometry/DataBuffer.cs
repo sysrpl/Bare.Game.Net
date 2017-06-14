@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Bare.Geometry
@@ -7,14 +8,18 @@ namespace Bare.Geometry
     {
         private IntPtr buffer;
         private IntPtr current;
+        private IntPtr cursor;
         private int count;
         private int length;
+        private FieldInfo[] fields;
+        private int fieldIndex;
         private readonly int sizeOf;
 
         public DataBuffer(int length = 0)
         {
             buffer = current = IntPtr.Zero;
             count = length = 0;
+            fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.Instance);
             sizeOf = Marshal.SizeOf(typeof(T));
             if (length > 0)
             {
@@ -27,6 +32,7 @@ namespace Bare.Geometry
         {
             buffer = current = IntPtr.Zero;
             count = length = 0;
+            fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.Instance);
             sizeOf = Marshal.SizeOf(typeof(T));
             AddRange(data);
         }
@@ -133,12 +139,29 @@ namespace Bare.Geometry
         {
             get
             {
-                if (index <= count)
+                if (index < 0)
                     return IntPtr.Zero;
                 if (index >= count)
                     return IntPtr.Zero;
                 return IntPtr.Add(buffer, index * sizeOf);
             }
+        }
+
+        public IntPtr Seek(int index)
+        {
+            var c = this[index];
+            int size = Marshal.SizeOf(fields[fieldIndex = 0].FieldType);
+            cursor = IntPtr.Add(c, size);
+            fieldIndex++;
+            return c;
+        }
+
+        public IntPtr Next()
+        {
+            var c = cursor;
+            int size = Marshal.SizeOf(fields[fieldIndex++].FieldType);
+            cursor = IntPtr.Add(c, size);
+            return c;
         }
 
         public int Count

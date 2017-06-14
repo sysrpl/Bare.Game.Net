@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿﻿using System;
+using Bare.Geometry;
 
 using static Bare.Interop.SDL2;
 using static Bare.Interop.GLES20;
@@ -53,11 +53,8 @@ namespace Bare.Devices
                 {
                     window = w;
                     context = c;
-<<<<<<< HEAD
                     ContextCreated();
-=======
                     stopwatch.Reset();
->>>>>>> 2fb7c6e1f524dfd707d1f6052118c26c152c1a4b
                     return true;
                 }
                 else
@@ -103,6 +100,40 @@ namespace Bare.Devices
                     SDL_DestroyWindow(w);
                 }
             }
+        }
+
+        public int ClientWidth 
+        {
+            get
+            {
+                PointI p;
+                GetClientSize(out p);
+                return p.X;
+            }
+        }
+
+        public int ClientHeight
+        {
+            get
+            {
+                PointI p;
+                GetClientSize(out p);
+                return p.Y;
+            }
+        }
+
+        public void GetClientSize(out PointI p)
+        {
+            int x;
+            int y;
+            if (WindowExists)
+                SDL_GetWindowSize(window, out x, out y);
+            else
+            {
+                x = style.Width;
+                y = style.Height;
+            }
+            p = new PointI(x, y);
         }
 
         #region properties
@@ -161,7 +192,6 @@ namespace Bare.Devices
 
         }
 
-<<<<<<< HEAD
         protected virtual void ContextCreated()
         {
 
@@ -172,10 +202,7 @@ namespace Bare.Devices
 
         }
 
-        protected virtual void Logic(EventList events)
-=======
         protected virtual void Logic(EventList events, Stopwatch stopwatch)
->>>>>>> 2fb7c6e1f524dfd707d1f6052118c26c152c1a4b
         {
 
         }
@@ -183,7 +210,6 @@ namespace Bare.Devices
         protected virtual void Render(Stopwatch stopwatch)
         {
         }
-
         /// <summary>
         /// Swaps the buffers for the current OpenGL context.
         /// </summary>

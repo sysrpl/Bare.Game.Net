@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -64,7 +64,15 @@
     <Compile Include="Geometry\Vec3.cs" />
     <Compile Include="Geometry\Vec4.cs" />
     <Compile Include="Geometry\DataBuffer.cs" />
-    <Compile Include="Geometry\Block.cs" />
+    <Compile Include="ContextHandle.cs" />
+    <Compile Include="Graphics\Shaders\ShaderObject.cs" />
+    <Compile Include="Graphics\Shaders\ShaderProgram.cs" />
+    <Compile Include="Graphics\Shaders\ShaderSource.cs" />
+    <Compile Include="Graphics\Shaders\VertexShader.cs" />
+    <Compile Include="Graphics\Shaders\FragmentShader.cs" />
+    <Compile Include="Geometry\PointI.cs" />
+    <Compile Include="Geometry\PointF.cs" />
+    <Compile Include="Extensions\IntPtrExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interop\" />
@@ -74,10 +82,9 @@
     <Folder Include="Devices\Displays\" />
     <Folder Include="Devices\Events\" />
     <Folder Include="Devices\Keyboard\" />
-=======
     <Compile Include="Devices\Stopwatch.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
->>>>>>> 2fb7c6e1f524dfd707d1f6052118c26c152c1a4b
+    <Folder Include="Graphics\Shaders\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="baregame.dll.config">
@@ -85,9 +92,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SDL2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

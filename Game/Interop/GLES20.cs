@@ -358,7 +358,7 @@ namespace Bare.Interop
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void glClearStencil(int s);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            public delegate void glColorMask(bool red, bool green, bool blue, bool alpha);
+            public delegate void glColorMask(byte red, byte green, byte blue, byte alpha);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void glCompileShader(int shader);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -392,7 +392,7 @@ namespace Bare.Interop
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void glDepthFunc(int func);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            public delegate void glDepthMask(bool flag);
+            public delegate void glDepthMask(byte flag);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void glDepthRangef(float n, float f);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -438,7 +438,7 @@ namespace Bare.Interop
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate int glGetAttribLocation(int program, IntPtr name);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            public unsafe delegate void glGetBooleanv(int pname, bool* data);
+            public unsafe delegate void glGetBooleanv(int pname, byte* data);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public unsafe delegate void glGetBufferParameteriv(int target, int pname, int* values);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -606,7 +606,7 @@ namespace Bare.Interop
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public unsafe delegate void glVertexAttrib4fv(int index, float* v);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            public delegate void glVertexAttribPointer(int index, int size, int type, bool normalized, int stride, IntPtr pointer);
+            public delegate void glVertexAttribPointer(int index, int size, int type, byte normalized, int stride, IntPtr pointer);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void glViewport(int x, int y, int width, int height);
         }
@@ -639,7 +639,6 @@ namespace Bare.Interop
         private static Delegates.glCreateProgram _glCreateProgram;
         private static Delegates.glCreateShader _glCreateShader;
         private static Delegates.glCullFace _glCullFace;
-        private static Delegates.glDebugMessageCallback _glDebugMessageCallback;
         private static Delegates.glDeleteBuffers _glDeleteBuffers;
         private static Delegates.glDeleteFramebuffers _glDeleteFramebuffers;
         private static Delegates.glDeleteProgram _glDeleteProgram;
@@ -703,7 +702,6 @@ namespace Bare.Interop
         private static Delegates.glIsTexture _glIsTexture;
         private static Delegates.glLineWidth _glLineWidth;
         private static Delegates.glLinkProgram _glLinkProgram;
-        private static Delegates.glObjectPtrLabel _glObjectPtrLabel;
         private static Delegates.glPixelStorei _glPixelStorei;
         private static Delegates.glPolygonOffset _glPolygonOffset;
         private static Delegates.glReadPixels _glReadPixels;
@@ -770,6 +768,8 @@ namespace Bare.Interop
 
         public static void glBindAttribLocation(int program, int index, string name)
         {
+            if (String.IsNullOrEmpty(name))
+                return;
             var n = Marshal.StringToHGlobalAnsi(name);
             _glBindAttribLocation(program, index, n);
             Marshal.FreeHGlobal(n);
@@ -857,7 +857,7 @@ namespace Bare.Interop
             _glClearStencil(s);
         }
 
-        public static void glColorMask(bool red, bool green, bool blue, bool alpha)
+        public static void glColorMask(byte red, byte green, byte blue, byte alpha)
         {
             _glColorMask(red, green, blue, alpha);
         }
@@ -922,11 +922,14 @@ namespace Bare.Interop
             _glDeleteProgram(program);
         }
 
-        public static unsafe void glDeleteRenderbuffers(int[] renderbuffers)
+        public static void glDeleteRenderbuffers(int[] renderbuffers)
         {
             int n = renderbuffers.Length;
-            fixed (int* b = renderbuffers)
-                _glDeleteRenderbuffers(n, b);
+            unsafe
+            {
+                fixed (int* b = renderbuffers)
+                    _glDeleteRenderbuffers(n, b);
+            }
         }
 
         public static void glDeleteShader(int shader)
@@ -934,62 +937,65 @@ namespace Bare.Interop
             _glDeleteShader(shader);
         }
 
-        public static unsafe void glDeleteTextures(int[] textures)
+        public static void glDeleteTextures(int[] textures)
         {
             int n = textures.Length;
-            fixed (int* b = textures)
-                _glDeleteTextures(n, b);
+            unsafe
+            {
+                fixed (int* b = textures)
+                    _glDeleteTextures(n, b);
+            }
         }
 
-        /*public static void glDepthFunc(int func)
+        public static void glDepthFunc(int func)
         {
-            _glDepthFunc();
+            _glDepthFunc(func);
         }
 
-        public static void glDepthMask(bool flag)
+        public static void glDepthMask(byte flag)
         {
-            _glDepthMask();
+            _glDepthMask(flag);
         }
 
         public static void glDepthRangef(float n, float f)
         {
-            _glDepthRangef();
+            _glDepthRangef(n, f);
         }
 
         public static void glDetachShader(int program, int shader)
         {
-            _glDetachShader();
+            _glDetachShader(program, shader);
         }
 
         public static void glDisable(int cap)
         {
-            _glDisable();
+            _glDisable(cap);
         }
 
         public static void glDisableVertexAttribArray(int index)
         {
-            _glDisableVertexAttribArray();
+            _glDisableVertexAttribArray(index);
         }
 
         public static void glDrawArrays(int mode, int first, int count)
         {
-            _glDrawArrays();
+            _glDrawArrays(mode, first, count);
         }
 
         public static void glDrawElements(int mode, int count, int type, IntPtr indices)
         {
-            _glDrawElements();
+            _glDrawElements(mode, count, type, indices);
         }
 
         public static void glEnable(int cap)
         {
-            _glEnable();
+            _glEnable(cap);
         }
 
         public static void glEnableVertexAttribArray(int index)
         {
-            _glEnableVertexAttribArray();
-        }*/
+            _glEnableVertexAttribArray(index);
+        }
 
         public static void glFinish()
         {
@@ -1001,32 +1007,37 @@ namespace Bare.Interop
             _glFlush();
         }
 
-        /*public static void glFramebufferRenderbuffer(int target, int attachment, int renderbuffertarget, int renderbuffer)
+        public static void glFramebufferRenderbuffer(int target, int attachment, int renderbuffertarget, int renderbuffer)
         {
-            _glFramebufferRenderbuffer();
+            _glFramebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffer);
         }
 
         public static void glFramebufferTexture2D(int target, int attachment, int textarget, int texture, int level)
         {
-            _glFramebufferTexture2D();
+            _glFramebufferTexture2D(target, attachment, textarget, texture, level);
         }
 
         public static void glFrontFace(int mode)
         {
-            _glFrontFace();
+            _glFrontFace(mode);
         }
 
-        public static void glGenBuffers(int n, int* buffers)
+        public static void glGenBuffers(int n, out int[] buffers)
         {
-            _glGenBuffers();
+            buffers = new int[n];
+            unsafe
+            {
+                fixed (int* b = buffers)
+                    _glGenBuffers(n, b);
+            }
         }
 
         public static void glGenerateMipmap(int target)
         {
-            _glGenerateMipmap();
+            _glGenerateMipmap(target);
         }
 
-        public static void glGenFramebuffers(int n, int* framebuffers)
+        /*public static void glGenFramebuffers(int n, int* framebuffers)
         {
             _glGenFramebuffers();
         }
@@ -1054,19 +1065,26 @@ namespace Bare.Interop
         public static void glGetAttachedShaders(int program, int maxCount, int* count, int* shaders)
         {
             _glGetAttachedShaders();
-        }
+        }*/
 
-        public static int glGetAttribLocation(int program, IntPtr name)
+        public static int glGetAttribLocation(int program, string name)
         {
-            _glGetAttribLocation();
+            if (String.IsNullOrEmpty(name))
+                return -1;
+            var n = Marshal.StringToHGlobalAnsi(name);
+            var i = _glGetAttribLocation(program, n);
+            Marshal.FreeHGlobal(n);
+            return i;
         }
 
-        public static void glGetBooleanv(int pname, bool* data)
+        public static unsafe void glGetBooleanv(int pname, out byte data)
         {
-            _glGetBooleanv();
+            byte b;
+            _glGetBooleanv(pname, &b);
+            data = b;
         }
 
-        public static void glGetBufferParameteriv(int target, int pname, int* values)
+        /*public static void glGetBufferParameteriv(int target, int pname, int* values)
         {
             _glGetBufferParameteriv();
         }
@@ -1094,42 +1112,102 @@ namespace Bare.Interop
         public static void glGetPointerv(int pname, IntPtr values)
         {
             _glGetPointerv();
-        }
+        }*/
 
-        public static void glGetProgramInfoLog(int program, int bufSize, int* length, IntPtr infoLog)
+        public static void glGetProgramInfoLog(int program, out string infoLog)
         {
-            _glGetProgramInfoLog();
+            int i;
+            glGetProgramiv(program, GL_INFO_LOG_LENGTH, out i);
+            if (i < 1)
+            {
+                infoLog = String.Empty;
+                return;
+            }
+            byte[] buffer = new byte[i + 1];
+            buffer[i] = 0;
+            unsafe
+            {
+                fixed (byte* b = buffer)
+                {
+                    int length;
+                    var s = (IntPtr)b;
+                    _glGetProgramInfoLog(program, i + 1, &length, s);
+                    infoLog = Marshal.PtrToStringAuto(s);
+                }
+            }
         }
 
-        public static void glGetProgramiv(int program, int pname, int* values)
+        public static unsafe void glGetProgramiv(int program, int pname, out int values)
         {
-            _glGetProgramiv();
+            int i = 0;
+            fixed (int* v = &values)
+            {
+                _glGetProgramiv(program, pname, v);
+                i = *v;
+            }
+            values = i;
         }
 
-        public static void glGetRenderbufferParameteriv(int target, int pname, int* values)
+        /*public static void glGetRenderbufferParameteriv(int target, int pname, int* values)
         {
             _glGetRenderbufferParameteriv();
-        }
+        }*/
 
-        public static void glGetShaderInfoLog(int shader, int bufSize, int* length, IntPtr infoLog)
+        public static unsafe void glGetShaderInfoLog(int shader, out string infoLog)
         {
-            _glGetShaderInfoLog();
+            int i;
+            glGetShaderiv(shader, GL_INFO_LOG_LENGTH, out i);
+            if (i < 1)
+            {
+                infoLog = String.Empty;
+                return;
+            }
+            byte[] buffer = new byte[i + 1];
+            buffer[i] = 0;
+            fixed (byte* b = buffer)
+            {
+                int length;
+                var s = (IntPtr)b;
+                _glGetShaderInfoLog(shader, i + 1, &length, s);
+                infoLog = Marshal.PtrToStringAuto(s);
+            }
         }
 
-        public static void glGetShaderiv(int shader, int pname, int* values)
+        public static unsafe void glGetShaderiv(int shader, int pname, out int values)
         {
-            _glGetShaderiv();
+            int i = 0;
+            fixed (int* v = &values)
+            {
+                _glGetShaderiv(shader, pname, v);
+                i = *v;
+            }
+            values = i;
         }
 
-        public static void glGetShaderPrecisionFormat(int shadertype, int precisiontype, int* range, int* precision)
+        /*public static void glGetShaderPrecisionFormat(int shadertype, int precisiontype, int* range, int* precision)
         {
             _glGetShaderPrecisionFormat();
-        }
-
-        public static void glGetShaderSource(int shader, int bufSize, int* length, IntPtr source)
-        {
-            _glGetShaderSource();
         }*/
+
+        public static unsafe void glGetShaderSource(int shader, out string source)
+        {
+            int i;
+            glGetShaderiv(shader, GL_SHADER_SOURCE_LENGTH, out i);
+            if (i < 1)
+            {
+                source = String.Empty;
+                return;
+            }
+            byte[] buffer = new byte[i + 1];
+            buffer[i] = 0;
+            fixed (byte* b = buffer)
+            {
+                int length;
+                var s = (IntPtr)b;
+                _glGetShaderSource(shader, i + 1, &length, s);    
+                source = Marshal.PtrToStringAuto(s);
+            }
+        }
 
         public static string glGetString(int name)
         {
@@ -1156,14 +1234,19 @@ namespace Bare.Interop
         public static void glGetUniformiv(int program, int location, int* values)
         {
             _glGetUniformiv();
-        }
+        }*/
 
-        public static int glGetUniformLocation(int program, IntPtr name)
+        public static int glGetUniformLocation(int program, string name)
         {
-            _glGetUniformLocation();
+            if (String.IsNullOrEmpty(name))
+                return -1;
+            var n = Marshal.StringToHGlobalAnsi(name);
+            var i = _glGetUniformLocation(program, n);
+            Marshal.FreeHGlobal(n);
+            return i;
         }
 
-        public static void glGetVertexAttribfv(int index, int pname, float* values)
+        /*public static void glGetVertexAttribfv(int index, int pname, float* values)
         {
             _glGetVertexAttribfv();
         }
@@ -1221,14 +1304,14 @@ namespace Bare.Interop
         public static void glLineWidth(float width)
         {
             _glLineWidth();
-        }
+        }*/
 
         public static void glLinkProgram(int program)
         {
-            _glLinkProgram();
+            _glLinkProgram(program);
         }
 
-        public static void glObjectPtrLabel(IntPtr ptr, int length, IntPtr label)
+        /*public static void glObjectPtrLabel(IntPtr ptr, int length, IntPtr label)
         {
             _glObjectPtrLabel();
         }
@@ -1271,14 +1354,25 @@ namespace Bare.Interop
         public static void glShaderBinary(int count, int* shaders, int binaryformat, IntPtr binary, int length)
         {
             _glShaderBinary();
-        }
+        }*/
 
-        public static void glShaderSource(int shader, int count, IntPtr strings, int* length)
+        public static void glShaderSource(int shader, string source)
         {
-            _glShaderSource();
+            if (String.IsNullOrWhiteSpace(source))
+                source = " ";
+            var buffer = Encoding.ASCII.GetBytes(source + "\0");
+            unsafe
+            {
+                fixed (byte* b = buffer)
+                {
+                    void* p = b;
+                    void* sources = &p;
+                    _glShaderSource(shader, 1, (IntPtr)sources, null);
+                }
+            }
         }
 
-        public static void glStencilFunc(int func, int addr, int mask)
+        /*public static void glStencilFunc(int func, int addr, int mask)
         {
             _glStencilFunc();
         }
@@ -1336,64 +1430,94 @@ namespace Bare.Interop
         public static void glTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int format, int type, IntPtr pixels)
         {
             _glTexSubImage2D();
+        }*/
+
+        public static void glUniform(int location, float v0)
+        {
+            glUniform1f(location, v0);
+        }
+
+        public static void glUniform(int location, int v0)
+        {
+            glUniform1i(location, v0);
+        }
+
+        public static void glUniform(int location, float v0, float v1)
+        {
+            glUniform2f(location, v0, v1);
+        }
+
+        public static void glUniform(int location, int v0, int v1)
+        {
+            glUniform2i(location, v0, v1);
+        }
+
+        public static void glUniform(int location, float v0, float v1, float v2)
+        {
+            glUniform3f(location, v0, v1, v2);
+        }
+
+        public static void glUniform(int location, int v0, int v1, int v2)
+        {
+            glUniform3i(location, v0, v1, v2);
         }
 
         public static void glUniform1f(int location, float v0)
         {
-            _glUniform1f();
+            _glUniform1f(location, v0);
         }
 
-        public static void glUniform1fv(int location, int count, float* value)
+        public static unsafe void glUniform1fv(int location, int count, IntPtr value)
         {
-            _glUniform1fv();
+            _glUniform1fv(location, count, (float*)value);
         }
 
         public static void glUniform1i(int location, int v0)
         {
-            _glUniform1i();
+            _glUniform1i(location, v0);
         }
 
-        public static void glUniform1iv(int location, int count, int* value)
+        public static unsafe void glUniform1iv(int location, int count, int* value)
         {
-            _glUniform1iv();
+            _glUniform1iv(location, count, (int*)value);
         }
 
         public static void glUniform2f(int location, float v0, float v1)
         {
-            _glUniform2f();
+            _glUniform2f(location, v0, v1);
         }
 
-        public static void glUniform2fv(int location, int count, float* value)
+        public static unsafe void glUniform2fv(int location, int count, IntPtr value)
         {
-            _glUniform2fv();
+            _glUniform2fv(location, count, (float*)value);
         }
 
         public static void glUniform2i(int location, int v0, int v1)
         {
-            _glUniform2i();
+            _glUniform2i(location, v0, v1);
         }
 
-        public static void glUniform2iv(int location, int count, int* value)
+        public static unsafe void glUniform2iv(int location, int count, IntPtr value)
         {
-            _glUniform2iv();
+            _glUniform2iv(location, count, (int*)value);
         }
 
         public static void glUniform3f(int location, float v0, float v1, float v2)
         {
-            _glUniform3f();
+            _glUniform3f(location, v0, v1, v2);
         }
 
-        public static void glUniform3fv(int location, int count, float* value)
+        public static unsafe void glUniform3fv(int location, int count, IntPtr value)
         {
-            _glUniform3fv();
+            _glUniform3fv(location, count, (float*)value);
         }
 
         public static void glUniform3i(int location, int v0, int v1, int v2)
         {
-            _glUniform3i();
+            _glUniform3i(location, v0, v1, v2);
         }
 
-        public static void glUniform3iv(int location, int count, int* value)
+        /*public static void glUniform3iv(int location, int count, int* value)
         {
             _glUniform3iv();
         }
@@ -1431,14 +1555,14 @@ namespace Bare.Interop
         public static void glUniformMatrix4fv(int location, int count, bool transpose, float* value)
         {
             _glUniformMatrix4fv();
-        }
+        }*/
 
         public static void glUseProgram(int program)
         {
-            _glUseProgram();
+            _glUseProgram(program);
         }
 
-        public static void glValidateProgram(int program)
+        /*public static void glValidateProgram(int program)
         {
             _glValidateProgram();
         }
@@ -1481,17 +1605,17 @@ namespace Bare.Interop
         public static void glVertexAttrib4fv(int index, float* v)
         {
             _glVertexAttrib4fv();
-        }
+        }*/
 
-        public static void glVertexAttribPointer(int index, int size, int type, bool normalized, int stride, IntPtr pointer)
+        public static void glVertexAttribPointer(int index, int size, int type, byte normalized, int stride, IntPtr pointer)
         {
-            _glVertexAttribPointer();
+            _glVertexAttribPointer(index, size, type, normalized, stride, pointer);
         }
 
         public static void glViewport(int x, int y, int width, int height)
         {
             _glViewport(x, y, width, height);
-        }*/
+        }
 
         /*
         public static unsafe void glDeleteBuffers(ref int[] buffers)

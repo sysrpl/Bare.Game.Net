@@ -31,6 +31,7 @@
     <Compile Include="MainClass.cs" />
     <Compile Include="Test01\Test01Window.cs" />
     <Compile Include="Test02\Test02Window.cs" />
+    <Compile Include="Test03\Test03Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game\BareGame.csproj">
@@ -41,6 +42,21 @@
   <ItemGroup>
     <Folder Include="Test01\" />
     <Folder Include="Test02\" />
+    <Folder Include="Test03\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Test03\shader1.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Test03\shader2.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Test03\shader3.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Test03\shader4.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

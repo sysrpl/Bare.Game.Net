@@ -12,12 +12,6 @@ namespace Tests
     {
         public static void Test()
         {
-            if (!Init())
-            {
-                WriteLine("Unable to find a display");
-                WriteLine("done.");
-                return;
-            }
             WriteLine("Bare Game Hardware Information");
             WriteLine("------------------------------");
             WriteLine($"Number of displays: {Displays.Count}");
@@ -51,7 +45,7 @@ namespace Tests
             WriteLine($"\n\tExtensions: {glGetString(GL_EXTENSIONS)}");
         }
 
-        protected override void Logic(EventList events)
+        protected override void Logic(EventList events, Stopwatch stopwatch)
         {
             foreach (var e in events)
             {
@@ -59,12 +53,12 @@ namespace Tests
                 {
                     var k = e as KeyboardEvent;
                     if (k.Code == KeyCode.Escape)
-                        Game.Quit();
+                        Quit();
                 }
             }
+            if (stopwatch.Seconds > 10)
+                Quit();
         }
-
-        private int i = 0;
 
         private static float Flip(float f)
         {
@@ -74,9 +68,9 @@ namespace Tests
             return f;
         }
 
-        protected override void Render()
+        protected override void Render(Stopwatch stopwatch)
         {
-            i++;
+            float i = (float)(stopwatch.Time * 60);
             float r = Flip(0.5f + i / 400.0f);
             float g = Flip(0.3f + i / 680.0f);
             float b = Flip(0.8f + i / 840.0f);
